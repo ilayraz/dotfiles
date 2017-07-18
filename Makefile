@@ -6,3 +6,8 @@ install-packages:
 
 link-config:
 	stow --restow `ls -d */`
+
+update: pull default
+
+pull:
+	git pull
