@@ -1,0 +1,14 @@
+[user]
+	name = Ilay Raz
+	email = ilay.raz@gmail.com
+[alias]
+	st = status
+	co = checkout
+	br = branch
+	up = rebase
+	ci = commit
+	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+[credential]
+	helper = netrc -f /home/ilayraz/.netrc.gpg -v -d
+[color]
+	ui = auto
