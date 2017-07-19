@@ -8,6 +8,7 @@ bumblebee
 dnscrypt-proxy
 emacs
 fakeroot
+feh
 firefox
 glances
 gradle
@@ -47,6 +48,7 @@ tree
 ttfautohint
 usbutils
 vi
+wget
 which
 wicd-patched
 xclip
