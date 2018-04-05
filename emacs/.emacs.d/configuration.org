@@ -228,6 +228,11 @@
   (add-hook 'c-initialization-hook
             (lambda () (define-key c-mode-base-map (kbd "C-.") 'insert-arrow)))
     #+END_SRC
+*** gdb mode
+   #+BEGIN_SRC emacs-lisp
+     (setq gdb-many-windows t)
+     (setq gdb-show-main t)
+   #+END_SRC
 ** Treat CamelCaseSubWords as seperate words
    #+BEGIN_SRC emacs-lisp
   (add-hook 'prog-mode-hook 'subword-mode)
@@ -362,3 +367,24 @@
      #+BEGIN_SRC emacs-lisp
        (use-package htmlize)
      #+END_SRC
+*** LaTeX
+    #+BEGIN_SRC emacs-lisp
+      (add-to-list 'org-latex-packages-alist '("" "mypackage"))
+    #+END_SRC
+** Org-ref
+   #+BEGIN_SRC emacs-lisp
+     (use-package org-ref
+       :init
+       (setq org-ref-notes-directory "~/org/references/notes"
+             org-ref-bibliography-notes "~/org/references/articles.org"
+             org-ref-default-bibliography '("~/org/references/articles.bib")
+             org-ref-pdf-directory "~/org/references/pdfs/"))
+   #+END_SRC
+** helm-bibtex
+   #+BEGIN_SRC emacs-lisp
+     (use-package helm-bibtex
+       :init
+       (setq helm-bibtex-bibliography "~/org/references/articles.bib"
+             helm-bibtex-library-path "~/org/references/pdfs"
+             helm-bibtex-notes-path "~/org/references/articles.org"))
+   #+END_SRC

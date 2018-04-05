@@ -18,11 +18,6 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 alias ec=~/.emacs.d/bin/ec
 alias et=~/.emacs.d/bin/et
 
-# python virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-source /usr/bin/virtualenvwrapper.sh
-
 # NPM
 export PATH=~/.npm-global/bin:$PATH
 
