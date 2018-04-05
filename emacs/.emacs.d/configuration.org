@@ -370,6 +370,7 @@
 *** LaTeX
     #+BEGIN_SRC emacs-lisp
       (add-to-list 'org-latex-packages-alist '("" "mypackage"))
+      (add-to-list 'org-latex-packages-alist '("" "amsthm"))
     #+END_SRC
 ** Org-ref
    #+BEGIN_SRC emacs-lisp
