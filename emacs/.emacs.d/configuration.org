@@ -233,6 +233,14 @@
      (setq gdb-many-windows t)
      (setq gdb-show-main t)
    #+END_SRC
+** Java
+*** Getters/setters
+    #+BEGIN_SRC emacs-lisp
+      (use-package java-snippets
+        :config
+        (setq yas-snippet-dirs
+              '("~/.emacs.d/snippets")))
+    #+END_SRC
 ** Treat CamelCaseSubWords as seperate words
    #+BEGIN_SRC emacs-lisp
   (add-hook 'prog-mode-hook 'subword-mode)
