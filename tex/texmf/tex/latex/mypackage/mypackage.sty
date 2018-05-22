@@ -1,6 +1,7 @@
 \ProvidesPackage{mypackage}[4/4/2018 LaTeX package for myself]
 
 \RequirePackage{amssymb}
+\RequirePackage{mathtools}
 
 % Define number sets
 \newcommand{\N}{\mathbb{N}}
@@ -12,3 +13,13 @@
 % Sets
 \let\originalemptyset\emptyset
 \renewcommand{\emptyset}{\varnothing}
+\newcommand{\ps}{\mathcal{P}}
+\DeclarePairedDelimiter{\set}{\lbrace\,}{\,\rbrace}
+\DeclarePairedDelimiterX\setc[2]{\lbrace}{\rbrace}{\,#1\;\delimsize\vert\;#2\,}
+
+% delimiters
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+\newcommand{\nimplies}{
+  \mathrel{{\ooalign{\hidewidth$\not\phantom{=}$\hidewidth\cr$\implies$}}}}
