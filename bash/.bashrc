@@ -9,6 +9,8 @@ alias ls='ls --color=auto'
 alias ll='ls -la'
 PS1='[\u@\h \W]\$ '
 
+export PATH=~/bin:$PATH
+
 export EDITOR=~/.emacs.d/bin/et
 export TERMINAL=sakura
 
@@ -22,3 +24,6 @@ alias et=~/.emacs.d/bin/et
 export PATH=~/.npm-global/bin:$PATH
 
 archey3
+
+# Conda
+. /usr/etc/profile.d/conda.sh
