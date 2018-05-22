@@ -177,7 +177,6 @@
        (global-magit-file-mode)
        :bind ("C-x g" . magit-status))
    #+END_SRC
-
 ** Autocomplete
    #+BEGIN_SRC emacs-lisp
      (use-package auto-complete
@@ -199,7 +198,14 @@
      (use-package direx
        :bind ("C-x C-j" . direx:jump-to-directory-other-window))
    #+END_SRC
-
+** Multi-language
+*** Insert -> function
+    #+BEGIN_SRC emacs-lisp
+      (defun insert-dash-arrow ()
+        "Inserts an arrow (\"->\")"
+        (interactive)
+        (insert "->"))
+    #+END_SRC
 ** C
 *** Set the C indents
     #+BEGIN_SRC emacs-lisp
@@ -214,19 +220,12 @@
         (insert "printf(\"\\n\", );")
         (backward-char 7))
     #+END_SRC
-*** Insert -> function
-    #+BEGIN_SRC emacs-lisp
-      (defun insert-arrow ()
-        "Inserts an arrow (\"->\")"
-        (interactive)
-        (insert "->"))
-    #+END_SRC
 *** Set cc-mode keybinds
     #+BEGIN_SRC emacs-lisp
   (add-hook 'c-initialization-hook
             (lambda () (define-key c-mode-base-map "\C-cp" 'insert-printf)))
   (add-hook 'c-initialization-hook
-            (lambda () (define-key c-mode-base-map (kbd "C-.") 'insert-arrow)))
+            (lambda () (define-key c-mode-base-map (kbd "C-.") 'insert-dash-arrow)))
     #+END_SRC
 *** gdb mode
    #+BEGIN_SRC emacs-lisp
@@ -239,7 +238,27 @@
       (use-package java-snippets
         :config
         (setq yas-snippet-dirs
-              '("~/.emacs.d/snippets")))
+              '("~/.emacs.d/snippets"))
+        (yas-load-directory "~/.emacs.d/snippets"))
+    #+END_SRC
+** Haskell
+*** Haskell mode
+    #+BEGIN_SRC emacs-lisp
+      (use-package haskell-mode)
+    #+END_SRC
+*** Insert => function
+    #+BEGIN_SRC emacs-lisp
+      (defun insert-equal-arrow ()
+        "Inserts an arrow (\"=>\")"
+        (interactive)
+        (insert "=>"))
+    #+END_SRC
+*** Set haskell-mode keybinds
+    #+BEGIN_SRC emacs-lisp
+      (add-hook 'haskell-mode-hook
+                (lambda () (define-key haskell-mode-map (kbd "C-\.") 'insert-dash-arrow)))
+      (add-hook 'haskell-mode-hook
+                (lambda () (define-key haskell-mode-map (kbd "C-M-\.") 'insert-equal-arrow)))
     #+END_SRC
 ** Treat CamelCaseSubWords as seperate words
    #+BEGIN_SRC emacs-lisp
