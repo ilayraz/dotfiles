@@ -18,22 +18,100 @@
 			   ("org" . "http://orgmode.org/elpa/")))
   (package-initialize)
    #+END_SRC
+
+** Ensure [[https://github.com/jwiegley/use-package][use-package]] is avaliable, if not install it
+   #+BEGIN_SRC emacs-lisp
+     (unless (package-installed-p 'use-package)
+       (package-refresh-contents)
+       (package-install 'use-package))
+   #+END_SRC
 ** Always require all packages
    #+BEGIN_SRC emacs-lisp
-  (setq use-package-always-ensure t)
+     (setq use-package-always-ensure t)
+   #+END_SRC
+* General
+** Keep changes from customize in a seperate file
+   #+BEGIN_SRC emacs-lisp
+     (setq custom-file "~/.emacs.d/emacs-customize.el")
+     (load custom-file)
+   #+END_SRC
+** ask for y-or-n instead of yes-or-no
+   #+BEGIN_SRC emacs-lisp
+     (fset 'yes-or-no-p 'y-or-n-p)
+   #+END_SRC
+** Ask for confirmation before killing emacs
+   #+BEGIN_SRC emacs-lisp
+  (setq confirm-kill-emacs 'y-or-n-p)
+   #+END_SRC
+** Wait for 20MB before trash collecting
+   #+BEGIN_SRC emacs-lisp
+     (setq gc-cons-threshold 20000000)
+   #+END_SRC
+** No startup message
+
+   and start with an empty strach
+   #+BEGIN_SRC emacs-lisp
+     (setq inhibit-startup-message t)
+     (setq initial-scratch-message nil)
+   #+END_SRC
+** Save all backups in one place
+   #+BEGIN_SRC emacs-lisp
+     (setq backup-directory-alist
+     `(("." . ,(concat user-emacs-directory "backups"))))
+   #+END_SRC
+** Automatically update buffer when it changes on disk
+   Use =auto-revert-mode= to immidiatly update buffer when file changes on disk
+   #+BEGIN_SRC emacs-lisp
+  (global-auto-revert-mode t)
+   #+END_SRC
+* Editor
+** Always require a final newline
+   #+BEGIN_SRC emacs-lisp
+  (setq require-final-newline t)
    #+END_SRC
 
-** Add manual packages
+** Don't assume double space after period
+   #+BEGIN_SRC emacs-lisp
+  (setq sentence-end-double-space nil)
+   #+END_SRC
 
-*** =use-package=
-    Add =use-package= manually so that it can download everything else automatically
-    #+BEGIN_SRC emacs-lisp
-      (add-to-list 'load-path "~/.emacs.d/use-package")
-      (require 'use-package)
-    #+END_SRC
+** Disable tab-indent
+   #+BEGIN_SRC emacs-lisp
+  (setq-default indent-tabs-mode nil)
+   #+END_SRC
 
-    #+RESULTS:
+** Delete trailing whitespace on save
+   #+BEGIN_SRC emacs-lisp
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+   #+END_SRC
 
+** Overwrite selection
+   Overwrite selection when writing over selected text
+   #+BEGIN_SRC emacs-lisp
+  (delete-selection-mode)
+   #+END_SRC
+** Enable hs-minor-mode
+   Use C-c @ C-c to toggle code-fold
+   #+BEGIN_SRC emacs-lisp
+     (add-hook 'prog-mode-hook (lambda () (interactive)(hs-minor-mode 1)))
+   #+END_SRC
+** Encoding preferences
+   #+BEGIN_SRC emacs-lisp
+     (prefer-coding-system 'utf-8)
+     (set-default-coding-systems 'utf-8)
+     (set-terminal-coding-system 'utf-8)
+     (set-keyboard-coding-system 'utf-8)
+     (setq-default buffer-file-coding-system 'utf-8-unix)
+   #+END_SRC
+** Save file on exit or file change
+   #+BEGIN_SRC emacs-lisp
+     (add-hook 'focus-out-hook (lambda () (interactive)(save-some-buffers t)))
+     (add-hook 'delete-frame-functions (lambda () (interactive)(save-some-buffers t)))
+   #+END_SRC
+** Treat CamelCaseSubWords as seperate words
+   #+BEGIN_SRC emacs-lisp
+  (add-hook 'prog-mode-hook 'subword-mode)
+   #+END_SRC
 * Utility functions
   #+BEGIN_SRC emacs-lisp
     (defun insert-newline ()
@@ -68,11 +146,8 @@
   #+END_SRC
 
 * UI preferences
-
 ** Disable window elements
-
    Disable useless scrollbar
-
    #+BEGIN_SRC emacs-lisp
   (scroll-bar-mode nil)
   (tool-bar-mode t)
@@ -83,12 +158,6 @@
   (setq ring-bell-function 'ignore)
    #+END_SRC
 
-** Display line numbers
-   Enable =linum-mode=
-   #+BEGIN_SRC emacs-lisp
-  (global-linum-mode t)
-   #+END_SRC
-
 ** Highlight the current line
    Softly highlight background color of current line
    #+BEGIN_SRC emacs-lisp
@@ -96,36 +165,20 @@
     (global-hl-line-mode))
    #+END_SRC
 
-** Highlight uncommited changes
-   Use =diff-hl= package to highlight changed-and-commited lines when programming
-   #+BEGIN_SRC emacs-lisp
-  (use-package diff-hl
-    :config
-    (add-hook 'prog-mode-hook 'turn-on-diff-hl-mode))
-   #+END_SRC
-
 ** Improve mode line
    Use =powerline= to improve the =mode line=
    #+BEGIN_SRC emacs-lisp
-  (use-package powerline
-    :config
-    (powerline-default-theme))
+     (use-package powerline)
    #+END_SRC
 
 ** Set theme
    Use =moe-dark= theme
    #+BEGIN_SRC emacs-lisp
-  (use-package moe-theme
-    :config
-    (powerline-moe-theme)
-    (moe-dark))
-   #+END_SRC
-
-** Ido
-   Enable =ido-mode=
-   #+BEGIN_SRC emacs-lisp
-   (ido-mode t)
-   (setq ido-enable-flex-matching t)
+     (use-package moe-theme
+       :after (powerline)
+       :config
+       (powerline-moe-theme)
+       (moe-dark))
    #+END_SRC
 
 ** Set defualt font
@@ -169,35 +222,6 @@
   (setq-default tab-width 4)
    #+END_SRC
 
-** Magit
-   Use =C-x g= to bring up the status menu
-   #+BEGIN_SRC emacs-lisp
-     (use-package magit
-       :config
-       (global-magit-file-mode)
-       :bind ("C-x g" . magit-status))
-   #+END_SRC
-** Autocomplete
-   #+BEGIN_SRC emacs-lisp
-     (use-package auto-complete
-       :config
-       (ac-config-default))
-   #+END_SRC
-
-** Elpy
-   #+BEGIN_SRC emacs-lisp
-  (setq elpy-rpc-python-command "python3.6")
-  (use-package elpy
-    :config
-    (elpy-enable))
-   #+END_SRC
-
-** Direx
-   Bind =C-x C-j= to open direx directory in other window
-   #+BEGIN_SRC emacs-lisp
-     (use-package direx
-       :bind ("C-x C-j" . direx:jump-to-directory-other-window))
-   #+END_SRC
 ** Multi-language
 *** Insert -> function
     #+BEGIN_SRC emacs-lisp
@@ -209,8 +233,8 @@
 ** C
 *** Set the C indents
     #+BEGIN_SRC emacs-lisp
-     (setq c-basic-offset 4)
-     (setq c-label-minimum-indentation 4)
+      (setq c-basic-offset 4
+       c-label-minimum-indentation 4)
     #+END_SRC
 *** Insert printf function
     #+BEGIN_SRC emacs-lisp
@@ -229,8 +253,8 @@
     #+END_SRC
 *** gdb mode
    #+BEGIN_SRC emacs-lisp
-     (setq gdb-many-windows t)
-     (setq gdb-show-main t)
+     (setq gdb-many-windows t
+           gdb-show-main t)
    #+END_SRC
 ** Java
 *** Getters/setters
@@ -244,7 +268,12 @@
 ** Haskell
 *** Haskell mode
     #+BEGIN_SRC emacs-lisp
-      (use-package haskell-mode)
+      (use-package haskell-mode
+        :mode "\\.hs\\'"
+        :interpreter "haskell"
+        :bind (:map haskell-mode-map
+                    ("C-\." . insert-dash-arrow)
+                    ("C-M-\." . insert-equal-arrow)))
     #+END_SRC
 *** Insert => function
     #+BEGIN_SRC emacs-lisp
@@ -253,49 +282,14 @@
         (interactive)
         (insert "=>"))
     #+END_SRC
-*** Set haskell-mode keybinds
+** Python
+*** Elpy
     #+BEGIN_SRC emacs-lisp
-      (add-hook 'haskell-mode-hook
-                (lambda () (define-key haskell-mode-map (kbd "C-\.") 'insert-dash-arrow)))
-      (add-hook 'haskell-mode-hook
-                (lambda () (define-key haskell-mode-map (kbd "C-M-\.") 'insert-equal-arrow)))
+   (setq elpy-rpc-python-command "python3.6")
+   (use-package elpy
+     :config
+     (elpy-enable))
     #+END_SRC
-** Treat CamelCaseSubWords as seperate words
-   #+BEGIN_SRC emacs-lisp
-  (add-hook 'prog-mode-hook 'subword-mode)
-   #+END_SRC
-* Editing
-
-** Always require a final newline
-   #+BEGIN_SRC emacs-lisp
-  (setq require-final-newline t)
-   #+END_SRC
-
-** Don't assume double space after period
-   #+BEGIN_SRC emacs-lisp
-  (setq sentence-end-double-space nil)
-   #+END_SRC
-
-** Disable tab-indent
-   #+BEGIN_SRC emacs-lisp
-  (setq-default indent-tabs-mode nil)
-   #+END_SRC
-
-** Delete trailing whitespace on save
-   #+BEGIN_SRC emacs-lisp
-  (add-hook 'before-save-hook 'delete-trailing-whitespace)
-   #+END_SRC
-
-** Overwrite selection
-   Overwrite selection when writing over selected text
-   #+BEGIN_SRC emacs-lisp
-  (delete-selection-mode)
-   #+END_SRC
-** Automatically update buffer when it changes on disk
-   Use =auto-revert-mode= to immidiatly update buffer when file changes on disk
-   #+BEGIN_SRC emacs-lisp
-  (global-auto-revert-mode t)
-   #+END_SRC
 * File finding
 ** Set defualt directory to home
    #+BEGIN_SRC emacs-lisp
@@ -310,25 +304,13 @@
    #+BEGIN_SRC emacs-lisp
   (setq-default dired-listing-switches "alh")
    #+END_SRC
-* General
-** ask for y-or-n instead of yes-or-no
+** Ido
+   Enable =ido-mode=
    #+BEGIN_SRC emacs-lisp
-     (fset 'yes-or-no-p 'y-or-n-p)
+   (ido-mode t)
+   (setq ido-enable-flex-matching t)
    #+END_SRC
-** Ask for confirmation before killing emacs
-   #+BEGIN_SRC emacs-lisp
-  (setq confirm-kill-emacs 'y-or-n-p)
-   #+END_SRC
-** Wait for 20MB before trash collecting
-   #+BEGIN_SRC emacs-lisp
-     (setq gc-cons-threshold 20000000)
-   #+END_SRC
-** No startup message
-   and start with an empty strach
-   #+BEGIN_SRC emacs-lisp
-     (setq inhibit-startup-message t)
-     (setq initial-scratch-message nil)
-   #+END_SRC
+
 * Keybinds
   #+BEGIN_SRC emacs-lisp
     (global-set-key (kbd "M-o") 'other-window)
@@ -340,6 +322,8 @@
     (global-set-key (kbd "C-o") 'insert-newline)
     (global-set-key (kbd "C-M-o") 'create-newline)
     (global-set-key (kbd "M-;") 'comment-or-uncomment-region-or-line)
+
+    (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
     ;; Set keybind only when Emacs is running as a daemon
     (when (daemonp)
@@ -399,20 +383,41 @@
       (add-to-list 'org-latex-packages-alist '("" "mypackage"))
       (add-to-list 'org-latex-packages-alist '("" "amsthm"))
     #+END_SRC
-** Org-ref
-   #+BEGIN_SRC emacs-lisp
-     (use-package org-ref
-       :init
-       (setq org-ref-notes-directory "~/org/references/notes"
-             org-ref-bibliography-notes "~/org/references/articles.org"
-             org-ref-default-bibliography '("~/org/references/articles.bib")
-             org-ref-pdf-directory "~/org/references/pdfs/"))
-   #+END_SRC
-** helm-bibtex
-   #+BEGIN_SRC emacs-lisp
-     (use-package helm-bibtex
-       :init
-       (setq helm-bibtex-bibliography "~/org/references/articles.bib"
-             helm-bibtex-library-path "~/org/references/pdfs"
-             helm-bibtex-notes-path "~/org/references/articles.org"))
-   #+END_SRC
+* Packages
+** General
+*** Diminish
+    #+BEGIN_SRC emacs-lisp
+      (use-package diminish)
+    #+END_SRC
+*** Autocomplete
+    #+BEGIN_SRC emacs-lisp
+      (use-package auto-complete
+        :config
+        (ac-config-default))
+    #+END_SRC
+*** undo-tree
+    #+BEGIN_SRC emacs-lisp
+      (use-package undo-tree
+        :diminish undo-tree-mode
+        :demand
+        :config
+        (global-undo-tree-mode)
+        :bind (("C-/" . undo-tree-undo)
+               ("C-M-/" . undo-tree-redo)))
+    #+END_SRC
+** Git
+*** Magit
+    Use =C-x g= to bring up the status menu
+    #+BEGIN_SRC emacs-lisp
+      (use-package magit
+        :config
+        (global-magit-file-mode)
+        :bind ("C-x g" . magit-status))
+    #+END_SRC
+*** Highlight uncommited changes
+    Use =diff-hl= package to highlight changed-and-commited lines when programming
+    #+BEGIN_SRC emacs-lisp
+      (use-package diff-hl
+        :config
+        (global-diff-hl-mode))
+    #+END_SRC
