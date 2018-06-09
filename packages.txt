@@ -13,7 +13,6 @@ clang
 dnscrypt-proxy
 emacs
 enscript
-fakeroot
 feh
 findimagedupes
 firefox
@@ -46,10 +45,12 @@ mtpaint
 nano
 netctl
 network-manager-applet
+ntp
 openssh
 otfcc
 pacaur
 package-query
+pacman-contrib
 patch
 pcmciautils
 pkgconf
