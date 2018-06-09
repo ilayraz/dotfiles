@@ -215,6 +215,11 @@
    #+BEGIN_SRC emacs-lisp
      (setq ns-pop-up-frame nil)
    #+END_SRC
+** Hide menu
+   #+BEGIN_SRC emacs-lisp
+     (menu-bar-mode 0)
+     (tool-bar-mode 0)
+   #+END_SRC
 * Programming customization
 ** Set indent
    Use a 4 space indent
@@ -302,7 +307,7 @@
    #+END_SRC
 ** Add human readable size units to dired
    #+BEGIN_SRC emacs-lisp
-  (setq-default dired-listing-switches "alh")
+     (setq-default dired-listing-switches "-alh")
    #+END_SRC
 ** Ido
    Enable =ido-mode=
@@ -325,6 +330,10 @@
 
     (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
+    ;; Toggle menu
+    (global-set-key (kbd "<mouse-3>") 'mouse-major-mode-menu)
+    (global-set-key (kbd "<M-mouse-3>") 'mouse-popup-menubar)
+
     ;; Set keybind only when Emacs is running as a daemon
     (when (daemonp)
       (global-set-key (kbd "C-x C-c") 'ask-before-closing))
@@ -336,11 +345,6 @@
      (use-package org-bullets
        :config
        (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-    #+END_SRC
-
-*** Use little downward-pointing arrow instead of ellipsis
-    #+BEGIN_SRC emacs-lisp
-     (setq org-ellipsis "⤵")
     #+END_SRC
 
 *** Use syntax highlighting in source block while editing
@@ -404,6 +408,18 @@
         (global-undo-tree-mode)
         :bind (("C-/" . undo-tree-undo)
                ("C-M-/" . undo-tree-redo)))
+    #+END_SRC
+*** dired-subtree
+    #+BEGIN_SRC emacs-lisp
+      (use-package dired-subtree
+        :bind (:map dired-mode-map
+                    ("i" . dired-subtree-insert)
+                    (";" . dired-subtree-remove)))
+    #+END_SRC
+*** smex
+    #+BEGIN_SRC emacs-lisp
+      (use-package smex
+        :bind ([remap execute-extended-command] . smex))
     #+END_SRC
 ** Git
 *** Magit
