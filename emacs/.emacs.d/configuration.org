@@ -393,12 +393,6 @@
     #+BEGIN_SRC emacs-lisp
       (use-package diminish)
     #+END_SRC
-*** Autocomplete
-    #+BEGIN_SRC emacs-lisp
-      (use-package auto-complete
-        :config
-        (ac-config-default))
-    #+END_SRC
 *** undo-tree
     #+BEGIN_SRC emacs-lisp
       (use-package undo-tree
@@ -412,6 +406,7 @@
 *** dired-subtree
     #+BEGIN_SRC emacs-lisp
       (use-package dired-subtree
+        :demand
         :bind (:map dired-mode-map
                     ("i" . dired-subtree-insert)
                     (";" . dired-subtree-remove)))
