@@ -432,3 +432,23 @@
         :config
         (global-diff-hl-mode))
     #+END_SRC
+** Company
+   #+BEGIN_SRC emacs-lisp
+     (use-package company
+       :init
+       (add-hook 'after-init-hook 'global-company-mode))
+   #+END_SRC
+*** Math
+    #+BEGIN_SRC emacs-lisp
+      (use-package company-math
+        :after (company)
+        :init
+        (add-to-list 'company-backends 'company-math-symbols-unicode))
+    #+END_SRC
+*** Fuzzy matching
+    #+BEGIN_SRC emacs-lisp
+      (use-package company-flx
+        :after company
+        :config
+        (company-flx-mode +1))
+    #+END_SRC
