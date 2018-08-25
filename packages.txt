@@ -10,6 +10,7 @@ bumblebee
 cabal-install
 chromium
 clang
+cmake
 dnscrypt-proxy
 emacs
 enscript
@@ -23,7 +24,6 @@ glances
 gradle
 gt5
 heroku-cli-nightly
-hunspell-en
 i3-wm
 i3blocks
 intel-ucode
@@ -59,6 +59,7 @@ python-conda
 radare2
 refind-efi
 reiserfsprogs
+ripgrep
 sakura
 stow
 strace
@@ -111,3 +112,4 @@ xorg-xvinfo
 xorg-xwd
 xorg-xwininfo
 xorg-xwud
+yarn
