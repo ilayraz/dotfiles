@@ -261,6 +261,13 @@
      (setq gdb-many-windows t
            gdb-show-main t)
    #+END_SRC
+** C++
+*** Irony
+    #+BEGIN_SRC emacs-lisp
+      (use-package irony
+        :hook (((c++-mode c-mode objc-mode) . irony-mode)
+               (irony-mode . irony-cdb-autosetup-compile-options)))
+    #+END_SRC
 ** Java
 *** Getters/setters
     #+BEGIN_SRC emacs-lisp
@@ -435,6 +442,7 @@
 ** Company
    #+BEGIN_SRC emacs-lisp
      (use-package company
+       :bind ("C-c f" . company-complete)
        :init
        (add-hook 'after-init-hook 'global-company-mode))
    #+END_SRC
@@ -452,3 +460,18 @@
         :config
         (company-flx-mode +1))
     #+END_SRC
+*** c++
+    #+BEGIN_SRC emacs-lisp
+      (use-package company-irony
+        :after (company)
+        :init
+        (add-to-list 'company-backends 'company-irony))
+    #+END_SRC
+** which-key
+   #+BEGIN_SRC emacs-lisp
+     (use-package which-key
+       :defer 0.2
+       :diminish
+       :config
+       (which-key-mode))
+   #+END_SRC
