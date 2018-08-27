@@ -66,6 +66,7 @@ strace
 terminus-font
 texlive-latexextra
 texlive-science
+the_silver_searcher
 tree
 usbutils
 valgrind
