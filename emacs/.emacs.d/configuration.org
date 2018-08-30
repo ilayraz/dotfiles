@@ -302,6 +302,124 @@
      :config
      (elpy-enable))
     #+END_SRC
+** Javascript
+   #+BEGIN_SRC emacs-lisp
+     (use-package rjsx-mode
+       :mode ("\\.js\\'" "\\.jsx'")
+       :interpreter "javascript"
+       :config
+       (js2-mode-hide-warnings-and-errors)
+       :init
+       (add-hook 'rjsx-mode-hook #'(lambda ()
+                                     (setq-local indent-line-function 'my/rjsx-indent-line)))
+       (add-hook 'rjsx-mode-hook #'(lambda ()
+                                    (use-eslint-from-node-modules)
+                                    (my/rjsx-use-eslint-indent))))
+
+
+
+     (use-package tide
+       :after (rjsx-mode company flycheck)
+       :hook n((rjsx-mode . tide-setup)
+              (rjsx-mode . tide-hl-identifier-mode)
+              (before-save . tinde-format-before-save)))
+
+
+     (defun use-eslint-from-node-modules ()
+       "Use local eslint config for flycheck."
+       (let* ((root (locate-dominating-file
+                     (or (buffer-file-name) default-directory)
+                     "node_modules"))
+              (eslint (and root
+                           (expand-file-name "node_modules/eslint/bin/eslint.js"
+                                             root))))
+         (when (and eslint (file-executable-p eslint))
+           (setq-local flycheck-javascript-eslint-executable eslint))))
+     (add-hook 'flycheck-mode-hook #'use-eslint-from-node-modules)
+
+     (defun my/rjsx-use-eslint-indent ()
+       "Check eslint file if exists and set `indent-tabs-mode` and `js-indent-level` accordingly."
+       (when (boundp 'flycheck-javascript-eslint-executable)
+         (let* ((json-object-type 'hash-table)
+                (json-config (shell-command-to-string (format (concat flycheck-javascript-eslint-executable " --print-config %s")
+                                                              (shell-quote-argument (buffer-file-name)))))
+                (indent-value (elt (gethash "indent" (gethash "rules" (json-read-from-string json-config))) 1)))
+           (ignore-errors
+             (if (equal indent-value "tab")
+                 (setq indent-tabs-mode t
+                       js-indent-level 4)
+               (setq indent-tabs-mode nil
+                     js-indent-level indent-value))))))
+
+     (defun my/rjsx-indent-line ()
+     "Overwrite default rjsx indent function to not overwrite the `indent-tabs-mode` variable."
+       (unless rjsx--indent-region-p
+         (js2-reparse))
+
+       (let* (;;(indent-tabs-mode nil)
+              (cur-pos (save-excursion (back-to-indentation) (point)))
+              (cur-char (char-after cur-pos))
+              (node (js2-node-at-point (- cur-pos rjsx--indent-running-offset)))
+              (parent (js2-node-parent node)))
+         (cond
+          ((rjsx-node-p node)
+           (cond
+            ((eq cur-char ?<)
+             (if (rjsx-node-p parent)
+                 (rjsx--indent-line-to-offset parent sgml-basic-offset)
+               ;; Top-level node, indent as JS
+               (js-indent-line))
+             (when rjsx--node-abs-pos-cache
+               (setf (gethash node rjsx--node-abs-pos-cache)
+                     (save-excursion (back-to-indentation) (point)))))
+            ((memq cur-char '(?/ ?>))
+             (rjsx--indent-line-to-offset node 0))
+            ((eq cur-char ?\n)
+             (rjsx--indent-line-to-offset node sgml-basic-offset))
+            (t (error "Don't know how to indent %s for JSX node" (make-string 1 cur-char)))))
+          ((and (rjsx-identifier-p parent)
+                (rjsx-member-p (js2-node-parent parent))
+                (rjsx-node-p (js2-node-parent (js2-node-parent parent))))
+           (rjsx--indent-line-to-offset (js2-node-parent (js2-node-parent parent)) 0))
+
+          ;; JSX children
+          ((rjsx-closing-tag-p node)
+           (rjsx--indent-line-to-offset parent 0))
+          ((rjsx-text-p node)
+           (rjsx--indent-line-to-offset parent sgml-basic-offset))
+          ((rjsx-wrapped-expr-p node)
+           (if (eq cur-char ?})
+               (js-indent-line)
+             (rjsx--indent-line-to-offset parent sgml-basic-offset)))
+
+          ;; Attribute-like (spreads, attributes, etc.)
+          ;; if first attr is on same line as tag, then align
+          ;; otherwise indent to parent level + sgml-basic-offset
+          ((or (rjsx-identifier-p node)
+               (and (rjsx-identifier-p parent)
+                    (rjsx-attr-p (js2-node-parent parent)))
+               (rjsx-spread-p node))
+           (let* ((tag (or (rjsx-ancestor node #'rjsx-node-p)
+                           (error "Did not find containing JSX tag for attributes")))
+                  (name (rjsx-node-name tag))
+                  column)
+             (save-excursion
+               (goto-char (rjsx--node-abs-pos tag))
+               (setq column (current-column))
+               (when name (forward-char (js2-node-end name)) (skip-chars-forward " \t"))
+               (if (eolp)
+                   (setq column (+ column sgml-basic-offset sgml-attribute-offset))
+                 (setq column (current-column))))
+             (indent-line-to column)))
+
+          ;; Everything else indent as javascript
+          (t (js-indent-line)))
+
+         (when rjsx--indent-region-p
+           (cl-incf rjsx--indent-running-offset
+                    (- (save-excursion (back-to-indentation) (point))
+                       cur-pos)))))
+   #+END_SRC
 * File finding
 ** Set defualt directory to home
    #+BEGIN_SRC emacs-lisp
@@ -422,6 +540,12 @@
     #+BEGIN_SRC emacs-lisp
       (use-package smex
         :bind ([remap execute-extended-command] . smex))
+    #+END_SRC
+*** Flycheck
+    #+BEGIN_SRC emacs-lisp
+      (use-package flycheck
+        :init
+        (global-flycheck-mode))
     #+END_SRC
 ** Git
 *** Magit
