@@ -57,6 +57,7 @@ pkgconf
 postman-bin
 python-conda
 radare2
+redshift
 refind-efi
 reiserfsprogs
 ripgrep
