@@ -11,6 +11,8 @@ cabal-install
 chromium
 clang
 cmake
+cower
+discord
 dnscrypt-proxy
 emacs
 enscript
@@ -48,13 +50,11 @@ network-manager-applet
 ntp
 openssh
 otfcc
-pacaur
 package-query
 pacman-contrib
 patch
 pcmciautils
 pkgconf
-postman-bin
 python-conda
 radare2
 redshift
@@ -115,3 +115,4 @@ xorg-xwd
 xorg-xwininfo
 xorg-xwud
 yarn
+yay
