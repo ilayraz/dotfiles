@@ -49,10 +49,14 @@
    #+END_SRC
 ** No startup message
 
-   and start with an empty strach
+   and start with an empty scratch
    #+BEGIN_SRC emacs-lisp
-     (setq inhibit-startup-message t)
-     (setq initial-scratch-message nil)
+     (setq inhibit-startup-message t
+           initial-scratch-message nil)
+   #+END_SRC
+** Start with configuration.org file open
+   #+BEGIN_SRC emacs-lisp
+     (setq initial-buffer-choice "~/.emacs.d/configuration.org")
    #+END_SRC
 ** Save all backups in one place
    #+BEGIN_SRC emacs-lisp
