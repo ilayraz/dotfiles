@@ -526,6 +526,14 @@
       (add-to-list 'org-latex-packages-alist '("" "amsthm"))
       (setq org-list-allow-alphabetical t)
     #+END_SRC
+** Macros
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list 'org-structure-template-alist '("p" "#+BEGIN_EXPORT latex
+     \\begin{proof}
+     ?
+     \\end{proof}
+     ,#+END_EXPORT"))
+   #+END_SRC
 * Packages
 ** General
 *** Diminish
