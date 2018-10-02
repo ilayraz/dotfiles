@@ -3,7 +3,7 @@
 \RequirePackage{amssymb}
 \RequirePackage{mathtools}
 
-% Define number sets
+% Rings and Fields
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\R}{\mathbb{R}}
@@ -17,9 +17,19 @@
 \DeclarePairedDelimiter{\set}{\lbrace\,}{\,\rbrace}
 \DeclarePairedDelimiterX\setc[2]{\lbrace}{\rbrace}{\,#1\;\delimsize\vert\;#2\,}
 
-% delimiters
+% Delimiters
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
 
 \newcommand{\nimplies}{
   \mathrel{{\ooalign{\hidewidth$\not\phantom{=}$\hidewidth\cr$\implies$}}}}
+
+% Operators
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\Inv}{Inv}
+\DeclareMathOperator{\GCD}{GCD}
+
+% 2x2 matrix
+\newcommand{\Matrix}[4]{\left(\begin{array}{cc}  #1 & #2 \\  #3 & #4 \\
+\end{array} \right) }

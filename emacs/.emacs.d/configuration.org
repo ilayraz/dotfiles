@@ -68,6 +68,15 @@
    #+BEGIN_SRC emacs-lisp
   (global-auto-revert-mode t)
    #+END_SRC
+** Message startup time
+   #+BEGIN_SRC emacs-lisp
+     (add-hook 'emacs-startup-hook #'(lambda ()
+                                       (message "Emacs ready in %s with %d garbage collections."
+                                                (format "%.2f seconds"
+                                                        (float-time
+                                                         (time-subtract after-init-time before-init-time)))
+                                                gcs-done)))
+   #+END_SRC
 * Editor
 ** Always require a final newline
    #+BEGIN_SRC emacs-lisp
@@ -515,22 +524,13 @@
     #+BEGIN_SRC emacs-lisp
       (add-to-list 'org-latex-packages-alist '("" "mypackage"))
       (add-to-list 'org-latex-packages-alist '("" "amsthm"))
+      (setq org-list-allow-alphabetical t)
     #+END_SRC
 * Packages
 ** General
 *** Diminish
     #+BEGIN_SRC emacs-lisp
       (use-package diminish)
-    #+END_SRC
-*** undo-tree
-    #+BEGIN_SRC emacs-lisp
-      (use-package undo-tree
-        :diminish undo-tree-mode
-        :demand
-        :config
-        (global-undo-tree-mode)
-        :bind (("C-/" . undo-tree-undo)
-               ("C-M-/" . undo-tree-redo)))
     #+END_SRC
 *** dired-subtree
     #+BEGIN_SRC emacs-lisp

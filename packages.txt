@@ -55,6 +55,7 @@ pacman-contrib
 patch
 pcmciautils
 pkgconf
+pptpclient
 python-conda
 radare2
 redshift
