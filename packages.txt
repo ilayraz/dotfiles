@@ -75,7 +75,6 @@ valgrind
 vi
 wget
 which
-wicd-patched
 xclip
 xf86-video-intel
 xf86-video-vesa
