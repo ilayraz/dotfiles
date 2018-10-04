@@ -1,4 +1,4 @@
-#+TITLE: Emacs configuration
+t#+TITLE: Emacs configuration
 
 * Set personal information
 
@@ -76,6 +76,10 @@
                                                         (float-time
                                                          (time-subtract after-init-time before-init-time)))
                                                 gcs-done)))
+   #+END_SRC
+** Tramp use ssh by default
+   #+BEGIN_SRC emacs-lisp
+     (setq tramp-default-method "ssh")
    #+END_SRC
 * Editor
 ** Always require a final newline
