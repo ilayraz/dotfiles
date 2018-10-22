@@ -12,6 +12,7 @@ chromium
 clang
 cmake
 cower
+dhcpcd
 discord
 dnscrypt-proxy
 emacs
@@ -45,7 +46,6 @@ mdadm
 mesa-demos
 mtpaint
 nano
-netctl
 network-manager-applet
 ntp
 openssh
