@@ -12,12 +12,14 @@ chromium
 clang
 cmake
 cower
+cowsay
 dhcpcd
 discord
 dnscrypt-proxy
 emacs
 enscript
 feh
+figlet
 findimagedupes
 firefox
 gdb
