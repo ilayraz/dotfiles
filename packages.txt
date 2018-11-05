@@ -20,7 +20,6 @@ emacs
 enscript
 feh
 figlet
-findimagedupes
 firefox
 gdb
 gettext
@@ -59,6 +58,7 @@ pcmciautils
 pkgconf
 pptpclient
 python-conda
+python-numpy
 radare2
 redshift
 refind-efi
