@@ -14,9 +14,11 @@ export PATH=~/bin:$PATH
 export EDITOR=~/.emacs.d/bin/et
 export TERMINAL=sakura
 
+# JAVA
 export ANDROID_HOME=/opt/android-sdk
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 
+# Emacs
 alias ec=~/.emacs.d/bin/ec
 alias et=~/.emacs.d/bin/et
 
@@ -27,6 +29,10 @@ archey3
 
 # Conda
 . /usr/etc/profile.d/conda.sh
+
+# Aliases
+alias rg="rg --smart-case --follow"
+alias tree="tree -C"
 
 # Utilities
 
