@@ -1,5 +1,4 @@
 android-platform
-android-platform-25
 android-sdk-build-tools
 android-tools
 aosp-devel
@@ -11,7 +10,6 @@ cabal-install
 chromium
 clang
 cmake
-cower
 cowsay
 dhcpcd
 discord
@@ -26,8 +24,6 @@ gettext
 ghc
 glances
 gradle
-gt5
-heroku-cli-nightly
 i3-wm
 i3blocks
 intel-ucode
@@ -50,11 +46,8 @@ nano
 network-manager-applet
 ntp
 openssh
-otfcc
-package-query
 pacman-contrib
 patch
-pcmciautils
 pkgconf
 pptpclient
 python-conda
@@ -62,6 +55,7 @@ python-numpy
 radare2
 redshift
 refind-efi
+reflector
 reiserfsprogs
 ripgrep
 rlwrap
