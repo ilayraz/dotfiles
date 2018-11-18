@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = *
+
+[Action]
+Description = Clearing cache after install/upgrade (keep 3 versions)...
+When = PostTransaction
+Exec = /usr/bin/paccache -rk3

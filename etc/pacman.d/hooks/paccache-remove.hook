@@ -1,0 +1,9 @@
+[Trigger]
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Description = Clearing cache after package remove (keep 3 versions)...
+When = PostTransaction
+Exec = /usr/bin/paccache -ruk3
