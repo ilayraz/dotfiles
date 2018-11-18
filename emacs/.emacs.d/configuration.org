@@ -129,6 +129,11 @@
    #+BEGIN_SRC emacs-lisp
   (add-hook 'prog-mode-hook 'subword-mode)
    #+END_SRC
+** Auto save
+   #+BEGIN_SRC emacs-lisp
+     (setq auto-save-visited-file-name nil)
+     (auto-save-visited-mode 1)
+   #+END_SRC
 * Utility functions
   #+BEGIN_SRC emacs-lisp
     (defun insert-newline ()
@@ -470,11 +475,15 @@
     (global-set-key (kbd "C-M-o") 'create-newline)
     (global-set-key (kbd "M-;") 'comment-or-uncomment-region-or-line)
 
-    (global-set-key [remap dabbrev-expand] 'hippie-expand)
+    (global-set-key (kbd "M-<SPC>") 'hippie-expand)
 
     ;; Toggle menu
     (global-set-key (kbd "<mouse-3>") 'mouse-major-mode-menu)
     (global-set-key (kbd "<M-mouse-3>") 'mouse-popup-menubar)
+
+    ;; Traverse between new hunks
+    (global-set-key (kbd "M-n") 'diff-hl-next-hunk)
+    (global-set-key (kbd "M-p") 'diff-hl-previous-hunk)
 
     ;; Set keybind only when Emacs is running as a daemon
     (when (daemonp)
