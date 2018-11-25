@@ -1,4 +1,5 @@
 android-platform
+android-platform-27
 android-sdk-build-tools
 android-tools
 aosp-devel
@@ -47,6 +48,7 @@ network-manager-applet
 ntp
 openssh
 pacman-contrib
+parallel
 patch
 pkgconf
 pptpclient
