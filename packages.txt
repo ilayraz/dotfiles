@@ -21,10 +21,11 @@ feh
 figlet
 firefox
 gdb
-gettext
 ghc
 glances
+gprolog
 gradle
+heroku-cli
 i3-wm
 i3blocks
 intel-ucode
@@ -46,11 +47,12 @@ mtpaint
 nano
 network-manager-applet
 ntp
-openssh
 pacman-contrib
 parallel
 patch
 pkgconf
+postgresql
+postman-bin
 pptpclient
 python-conda
 python-numpy
@@ -60,8 +62,9 @@ refind-efi
 reflector
 reiserfsprogs
 ripgrep
-rlwrap
+rtorrent
 sakura
+steam
 stow
 strace
 terminus-font
@@ -74,6 +77,7 @@ valgrind
 vi
 wget
 which
+winetricks
 xclip
 xf86-video-intel
 xf86-video-vesa

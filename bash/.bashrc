@@ -5,6 +5,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+archey3
+
 alias ls='ls --color=auto'
 alias ll='ls -la'
 PS1='[\u@\h \W]\$ '
@@ -25,10 +27,12 @@ alias et=~/.emacs.d/bin/et
 # NPM
 export PATH=~/.npm-global/bin:$PATH
 
-archey3
-
 # Conda
 . /usr/etc/profile.d/conda.sh
+
+# Wine
+export WINEPREFIX="/home/ilayraz/.steam/steam/steamapps/common/Proton 3.7/dist/share/default_pfx/"
+export WINEPATH="/home/ilayraz/.steam/steam/steamapps/common/Proton 3.7/dist/bin/wine64"
 
 # Aliases
 alias rg="rg --smart-case --follow"
