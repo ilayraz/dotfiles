@@ -1,2 +1,0 @@
-My Arch Linux Laptop dotfiles
-Managed with [[https://www.gnu.org/software/stow/][GNU Stow]].

@@ -8,7 +8,5 @@
 	up = rebase
 	ci = commit
 	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
-[credential]
-	helper = netrc -f /home/ilayraz/.netrc.gpg -v -d
 [color]
 	ui = auto

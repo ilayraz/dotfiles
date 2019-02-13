@@ -1,4 +1,4 @@
-#+TITLE: Emacs configuration
+b#+TITLE: Emacs configuration
 
 * Set personal information
 
@@ -12,6 +12,7 @@
 ** Initial package setup
    #+BEGIN_SRC emacs-lisp
   (require 'package)
+  (package-initialize)
   (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
 			   ("marmalade" . "https://marmalade-repo.org/packages/")
 			   ("melpa" . "https://melpa.org/packages/")
@@ -204,9 +205,9 @@
    #+END_SRC
 
 ** Set defualt font
-   Increase =font-height= to 16
+   Increase =font-height=
    #+BEGIN_SRC emacs-lisp
-  (set-face-attribute 'default nil :height 160 :family "Iosevka Type")
+  (set-face-attribute 'default nil :height 300 :family "Inconsolata")
    #+END_SRC
 
 ** Defualt max line length
@@ -291,14 +292,6 @@
                (irony-mode . irony-cdb-autosetup-compile-options)))
     #+END_SRC
 ** Java
-*** Getters/setters
-    #+BEGIN_SRC emacs-lisp
-      (use-package java-snippets
-        :config
-        (setq yas-snippet-dirs
-              '("~/.emacs.d/snippets"))
-        (yas-load-directory "~/.emacs.d/snippets"))
-    #+END_SRC
 ** Haskell
 *** Haskell mode
     #+BEGIN_SRC emacs-lisp
@@ -326,7 +319,7 @@
     #+END_SRC
 ** Javascript
    #+BEGIN_SRC emacs-lisp
-     (use-package rjsx-mode
+   (use-package rjsx-mode
        :mode ("\\.js\\'" "\\.jsx'")
        :interpreter "javascript"
        :config

@@ -1,8 +1,0 @@
-*
-
-!.gitignore
-!configuration.org
-!init.el
-!bin/*
-!.gitmodules
-!use-package

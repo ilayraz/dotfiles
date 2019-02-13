@@ -1,6 +1,0 @@
-* =alsamixer= Volume controller
-* =xbacklight= Screen brightness controller
-* =irssi= IRC client
-* =glances= System status
-* =nmtui= Network manager
-* =feh= Image viewer

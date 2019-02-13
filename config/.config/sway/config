@@ -1,0 +1,142 @@
+exec xrdb ~/.Xresources
+
+set $mod Mod4
+
+set $term urxvt
+set $browser /usr/bin/firefox
+set $lockscreen /usr/local/bin/lockscreen
+# set $lockscreen /usr/bin/swaylock
+set $menu dmenu_path | dmenu | xargs swaymsg exec
+
+gaps inner 10
+gaps outer 0
+smart_gaps on
+
+input "6940:6920:Corsair_Corsair_K95W_Gaming_Keyboard" {
+	xkb_options ctrl:nocaps
+}
+
+input "6940:6974:Corsair_Corsair_Gaming_SCHIMITAR_PRO_RGB_Mouse" accel_profile flat
+
+# Wallpaper
+output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+
+font Inconsolata 10
+
+default_border pixel 2
+default_floating_border none
+hide_edge_borders both
+
+## Key bindings
+# New terminal
+bindsym $mod+Return exec $term
+
+# Kill focused window
+bindsym $mod+Shift+q kill
+
+# Start your launcher
+bindsym $mod+d exec $menu
+
+# Lock screen
+bindsym $mod+Shift+semicolon exec $lockscreen
+
+# Open browser
+bindsym $mod+i exec $browser
+
+# Open new emacs window
+bindsym $mod+e exec --no-startup-id emacsclient -a "" -c
+
+# Reload configuration file
+bindsym $mod+Shift+c reload
+
+# Exit sway (logs you out of your wayland session)
+bindsym $mod+Shift+e exit
+
+# Move focus around
+bindsym $mod+l focus left
+bindsym $mod+p focus up
+
+# Move windows around
+bindsym $mod+Shift+l move left
+bindsym $mod+Shift+p move up
+
+# Switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# Split containers
+bindsym $mod+h splith
+bindsym $mod+v splitv
+
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
+
+# Move the current focus to scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show next scratchpad window or hide focused scratchpad window
+# If there are multiple scratchpad windows, this command cycles through them
+bindsym $mod+minus scratchpad show
+
+# Resize containers
+mode "resize" {
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+#
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+    position bottom
+    font Inconsolata 30, FontAwesome 20
+    # status_command /usr/bin/conky -c ~/.config/conky/conky.conf
+    status_command /usr/bin/i3status-rs ~/.config/i3status/config.toml
+
+    strip_workspace_numbers yes
+
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+    # status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+
+    colors {
+        separator #666666
+        background #002b36
+        statusline #dddddd
+        focused_workspace #268bd2 #268db2 #fdf6e3
+        active_workspace #333333 #333333 #ffffff
+        inactive_workspace #586e75 #586e75 #93a1a1
+        urgent_workspace #2f343a #900000 #ffffff
+    }
+}
+
+include /etc/sway/config.d/*
+include ~/.config/sway/conf.d/*

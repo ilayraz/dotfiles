@@ -1,0 +1,4 @@
+# audio keys
+bindsym XF86AudioRaiseVolume exec /usr/bin/pulsemixer --change-volume +5
+bindsym XF86AudioLowerVolume exec /usr/bin/pulsemixer --change-volume -5
+bindsym XF86AudioMute        exec /usr/bin/pulsemixer --toggle-mute
