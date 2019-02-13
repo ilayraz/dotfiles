@@ -57,6 +57,15 @@ sbupdate-git
 snapper
 stow
 strace
+texlive-bibtexextra
+texlive-fontsextra
+texlive-formatsextra
+texlive-games
+texlive-humanities
+texlive-music
+texlive-pstricks
+texlive-publishers
+texlive-science
 traceroute
 tree
 ttf-font-awesome
