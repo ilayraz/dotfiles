@@ -1,4 +1,4 @@
-b#+TITLE: Emacs configuration
+#+TITLE: Emacs configuration
 
 * Set personal information
 
