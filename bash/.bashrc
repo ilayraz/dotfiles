@@ -34,6 +34,10 @@ export PATH=~/.npm-global/bin:$PATH
 export WINEPREFIX="/home/ilayraz/.steam/steam/steamapps/common/Proton 3.7/dist/share/default_pfx/"
 export WINEPATH="/home/ilayraz/.steam/steam/steamapps/common/Proton 3.7/dist/bin/wine64"
 
+# Ruby
+export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
+export GEM_HOME=$(ruby -e 'print Gem.user_dir')
+
 # Aliases
 alias rg="rg --smart-case --follow"
 alias tree="tree -C"
