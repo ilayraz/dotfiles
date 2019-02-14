@@ -52,6 +52,7 @@ reflector
 reiserfsprogs
 ripgrep
 rkhunter
+rtorrent
 sbupdate-git
 snapper
 stow
