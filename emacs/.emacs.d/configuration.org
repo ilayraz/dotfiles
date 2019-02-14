@@ -539,6 +539,17 @@
      ?
      \\end{proof}
      ,#+END_EXPORT"))
+
+     (add-to-list 'org-structure-template-alist '("eq" "#+BEGIN_EXPORT latex
+     \\begin{equation*}
+     ?
+     \\end{equation*}
+     ,#+END_EXPORT"))
+     (add-to-list 'org-structure-template-alist '("al" "#+BEGIN_EXPORT latex
+     \\begin{align*}
+     ?
+     \\end{align*}
+     ,#+END_EXPORT"))
    #+END_SRC
 * Packages
 ** General
