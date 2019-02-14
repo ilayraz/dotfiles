@@ -7,7 +7,6 @@ automake
 bdf-unifont
 clang
 cryptboot
-discord
 dnscrypt-proxy
 emacs
 fedora-firefox-wayland-bin
