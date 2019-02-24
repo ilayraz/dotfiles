@@ -7,6 +7,7 @@ automake
 bdf-unifont
 clang
 cryptboot
+culmus
 dnscrypt-proxy
 emacs
 fedora-firefox-wayland-bin
@@ -34,7 +35,6 @@ man-db
 man-pages
 mdadm
 mpd
-mpv
 nano
 ncmpcpp
 netctl
@@ -57,6 +57,7 @@ sbupdate-git
 snapper
 stow
 strace
+svp
 texlive-bibtexextra
 texlive-fontsextra
 texlive-formatsextra
@@ -74,6 +75,7 @@ unbound
 usbutils
 valgrind
 vi
+vulkan-headers
 webstorm
 which
 wl-clipboard-git
