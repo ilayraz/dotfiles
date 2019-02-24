@@ -1,3 +1,5 @@
+
+
 \ProvidesPackage{mypackage}[4/4/2018 LaTeX package for myself]
 
 \RequirePackage{amssymb}
@@ -16,8 +18,7 @@
 \let\originalemptyset\emptyset
 \renewcommand{\emptyset}{\varnothing}
 \newcommand{\ps}{\mathcal{P}}
-\DeclarePairedDelimiter{\set}{\lbrace\,}{\,\rbrace}
-\DeclarePairedDelimiterX\setc[2]{\lbrace}{\rbrace}{\,#1\;\delimsize\vert\;#2\,}
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
 
 % Delimiters
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
