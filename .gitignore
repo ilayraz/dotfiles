@@ -3,6 +3,8 @@
 #*
 .~*
 
+*log*
+
 emacs/*
 !emacs/.emacs.d/configuration.org
 !emacs/.emacs.d/init.el
