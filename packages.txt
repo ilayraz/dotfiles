@@ -53,6 +53,7 @@ reiserfsprogs
 ripgrep
 rkhunter
 rtorrent
+rust
 sbupdate-git
 snapper
 stow
