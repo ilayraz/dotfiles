@@ -10,6 +10,7 @@ alias tree='tree -C'
 alias ec=~/.emacs.d/bin/ec
 alias et=~/.emacs.d/bin/et
 alias mus='ncmpcpp'
+alias cp='cp --reflink=auto --sparse=always'
 
 # Exports
 export EDITOR=~/.emacs.d/bin/et
