@@ -22,6 +22,7 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export PATH="${PATH}:${HOME}/bin"
 export PATH="$HOME/.node_modules/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
+export MOZ_ENABLE_WAYLAND=1
 
 manopt() {
   local cmd=$1 opt=$2
