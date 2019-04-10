@@ -10,7 +10,7 @@ cryptboot
 culmus
 dnscrypt-proxy
 emacs
-fedora-firefox-wayland-bin
+firefox
 firejail-apparmor
 flatpak
 font-bh-ttf
@@ -24,6 +24,7 @@ iputils
 jfsutils
 jq
 keepass
+libreoffice-fresh
 licenses
 linux
 linux-hardened
@@ -41,10 +42,12 @@ netctl
 ntfs-3g
 oh-my-zsh-git
 openssh
+otf-eb-garamond
 pacman-contrib
 patch
 pigz
 pkgconf
+postgresql
 psmisc
 pulsemixer
 redshift-wlr-gamma-control-git
@@ -70,6 +73,7 @@ texlive-publishers
 texlive-science
 traceroute
 tree
+ttf-arvo
 ttf-font-awesome
 ttf-inconsolata
 unbound
