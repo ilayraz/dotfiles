@@ -2,9 +2,6 @@ theme = "solarized-dark"
 icons = "awesome"
 
 [[block]]
-block = "pacman"
-
-[[block]]
 block = "net"
 device = "eno1"
 ip = false
