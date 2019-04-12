@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-archey3
+neofetch
 
 # Aliases
 alias ls='ls --color=auto'
