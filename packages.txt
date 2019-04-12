@@ -36,6 +36,7 @@ man-db
 man-pages
 mdadm
 mpd
+mpdris2
 nano
 ncmpcpp
 neofetch

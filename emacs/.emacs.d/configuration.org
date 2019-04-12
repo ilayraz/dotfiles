@@ -207,7 +207,7 @@
 ** Set defualt font
    Increase =font-height=
    #+BEGIN_SRC emacs-lisp
-     (set-face-attribute 'default nil :height 250 :family "Inconsolata-g")
+     (set-face-attribute 'default nil :height 250 :family "Inconsolata")
    #+END_SRC
 
 ** Defualt max line length
