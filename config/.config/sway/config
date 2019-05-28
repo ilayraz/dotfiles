@@ -1,9 +1,7 @@
-exec xrdb ~/.Xresources
-
 set $mod Mod4
 
 set $term termite
-set $browser /usr/bin/firefox
+set $browser /usr/local/bin/firefox
 set $lockscreen /usr/local/bin/lockscreen
 set $menu dmenu_path | dmenu | xargs swaymsg exec
 
@@ -12,7 +10,9 @@ gaps outer 0
 smart_gaps on
 
 input "6940:6920:Corsair_Corsair_K95W_Gaming_Keyboard" {
-	xkb_options ctrl:nocaps
+    xkb_layout us,il
+    xkb_options ctrl:nocaps,grp:alt_shift_toggle
+    xkb_numlock enabled
 }
 
 input "6940:6974:Corsair_Corsair_Gaming_SCHIMITAR_PRO_RGB_Mouse" accel_profile flat
@@ -40,7 +40,7 @@ bindsym $mod+d exec $menu
 bindsym $mod+Shift+semicolon exec $lockscreen
 
 # Open browser
-bindsym $mod+i exec $browser
+bindsym $mod+w exec $browser
 
 # Open new emacs window
 bindsym $mod+e exec --no-startup-id emacsclient -a "" -c
@@ -70,6 +70,10 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+
+bindsym $mod+Shift+d workspace discord
+bindsym $mod+i workspace irc
+bindsym $mod+Shift+i move container to workspace irc
 
 # Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -118,10 +122,11 @@ bindsym $mod+r mode "resize"
 bar {
     position bottom
     font Inconsolata 30, FontAwesome 20
-    # status_command /usr/bin/conky -c ~/.config/conky/conky.conf
     status_command /usr/bin/i3status-rs ~/.config/i3status/config.toml
 
     strip_workspace_numbers yes
+
+    status_padding 3
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
