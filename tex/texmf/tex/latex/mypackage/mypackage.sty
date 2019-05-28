@@ -12,6 +12,14 @@
 \newcommand{\HH}{\mathbb{H}}
 \newcommand{\F}{\mathbb{F}}
 
+% Greek letter shortcuts
+\renewcommand{\a}{\alpha}
+\renewcommand{\b}{\beta}
+\newcommand{\G}{\Gamma}
+\renewcommand{\t}{\theta}
+\newcommand{\s}{\sigma}
+\renewcommand{\r}{\rho}
+
 % Sets
 \let\originalemptyset\emptyset
 \renewcommand{\emptyset}{\varnothing}
@@ -39,6 +47,14 @@
 \DeclareMathOperator{\Symm}{Symm}
 \DeclareMathOperator{\Orb}{Orb}
 \DeclareMathOperator{\Char}{Char}
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\Log}{Log}
+\DeclareMathOperator{\Arg}{Arg}
+
+\let\Re\relax
+\DeclareMathOperator{\Re}{Re}
+\let\Im\relax
+\DeclareMathOperator{\Im}{Im}
 
 % Commands
 \newcommand{\tang}{\top}
@@ -48,3 +64,6 @@
 % 2x2 matrix
 \newcommand{\Matrix}[4]{\left(\begin{array}{cc}  #1 & #2 \\  #3 & #4 \\
 \end{array} \right) }
+
+% misc
+\newcommand{\iso}{\cong}
