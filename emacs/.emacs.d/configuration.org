@@ -46,7 +46,7 @@
    #+END_SRC
 ** Wait for 20MB before trash collecting
    #+BEGIN_SRC emacs-lisp
-     (setq gc-cons-threshold 20000000)
+     (setq gc-cons-threshold 50000000)
    #+END_SRC
 ** No startup message
 
@@ -324,7 +324,6 @@
        :interpreter "javascript"
        :config
        (js2-mode-hide-warnings-and-errors)
-       :init
        (add-hook 'rjsx-mode-hook #'(lambda ()
                                      (setq-local indent-line-function 'my/rjsx-indent-line)))
        (add-hook 'rjsx-mode-hook #'(lambda ()
@@ -456,7 +455,7 @@
    (setq ido-enable-flex-matching t)
    #+END_SRC
 
-* Keybinds
+* Keybindsn
   #+BEGIN_SRC emacs-lisp
     (global-set-key (kbd "M-o") 'other-window)
     (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -481,6 +480,9 @@
     ;; Set keybind only when Emacs is running as a daemon
     (when (daemonp)
       (global-set-key (kbd "C-x C-c") 'ask-before-closing))
+
+
+    (global-unset-key (kbd "C-z"))
   #+END_SRC
 * Org-mode
 ** Display preferences
@@ -573,8 +575,12 @@
 *** Flycheck
     #+BEGIN_SRC emacs-lisp
       (use-package flycheck
-        :init
+        :config
         (global-flycheck-mode))
+    #+END_SRC
+*** use-package-ensure-system-package
+    #+BEGIN_SRC emacs-lisp
+      (use-package use-package-ensure-system-package)
     #+END_SRC
 ** Git
 *** Magit
@@ -627,4 +633,162 @@
        :diminish
        :config
        (which-key-mode))
+   #+END_SRC
+* Mail
+** packages
+   #+BEGIN_SRC emacs-lisp
+     ;; use imagemagick if avaliable
+     (when (fboundp 'imagemagick-register-types)
+       (imagemagick-register-types))
+
+     (use-package org-mime)
+
+     (use-package smtpmail
+       :after mu4e
+       :custom
+       (smtpmail-queue-mail nil))
+
+     (use-package org-mu4e
+       :load-path "/usr/share/emacs/site-lisp/mu4e/"
+       :commands org-mu4e-compose-org-mode
+       :ensure nil
+       :custom
+       (org-mu4e-convert-to-html t))
+
+     (use-package mu4e-alert
+       :after mu4e
+       :hook ((after-init . mu4e-alert-enable-mode-line-display)
+              (after-init . mu4e-alert-enable-notifications))
+       :config (mu4e-alert-set-default-style 'libnotify)
+       :custom
+       (mu4e-alert-interesting-mail-query
+        (concat
+         "flag:unread maildir:/personal/INBOX "
+         "OR "
+         "flag:unread maildir:/ucsc/INBOX ")))
+   #+END_SRC
+** mu4e
+   #+BEGIN_SRC emacs-lisp
+     (use-package mu4e
+       :load-path "/usr/share/emacs/site-lisp/mu4e/"
+       :ensure nil
+       :ensure-system-package mu
+       :demand
+       :bind ("C-c m" . mu4e)
+       :config
+       ;; to view selected message in the browser. no signingr required.
+       (add-to-list 'mu4e-view-actions
+                    '("ViewInBrowser" . mu4e-action-view-in-browser) t)
+       (add-hook 'mu4e-view-mode-hook #'visual-line-mode)
+
+       ;; <tab> to nav to links, <RET> to open them in browser
+       (add-hook 'mu4e-view-mode-hook
+                 (lambda()
+                   (local-set-key (kbd "<RET>") 'mu4e~view-browse-url-from-binding)
+                   (local-set-key (kbd "<tab>") 'shr-next-link)
+                   (local-set-key (kbd "<backtab>") 'shr-previous-link)))
+
+       ;; dynamically set width of the colums to take whole width
+       (add-hook 'mu4e-headers-mode-hook
+                 (lambda()
+                   (setq mu4e-headers-fields
+                         `((:human-date . 12)
+                           (:flags . 4)
+                           (:from-or-to . 15)
+                           (:subject . ,(- (window-body-width) 47))
+                           (:size . 7)))))
+
+       ;; spell check
+       (add-hook 'mu4e-compose-mode-hook
+                 (lambda()
+                   "My settings for message composition."
+                   (visual-line-mode)
+                   (org-mu4e-compose-org-mode)
+                   (use-hard-newlines -1)
+                   (flyspell-mode)))
+       (setq mu4e-contexts
+         (list
+          (make-mu4e-context
+           :name "personal"
+           :enter-func (lambda() (mu4e-message "Entering context personal"))
+           :leave-func (lambda() (mu4e-message "Leaving context personal"))
+           :match-func (lambda(msg)
+                         (when msg
+                           (mu4e-message-contact-field-matches
+                            msg '(:from :to :cc :bcc) "ilay.raz@gmail.com")))
+           :vars '((user-mail-address . "ilay.raz@gmail.com")
+                   (user-full-name . "Ilay Raz")
+                   (mu4e-sent-folder . "/personal/[personal].Sent Mail")
+                   (mu4e-drafts-folder . "/personal/[personal].drafts")
+                   (mu4e-trash-folder . "/personal/[personal].Trash")
+                   (mu4e-compose-format-flowed . t)
+                   (smtpmail-queue-dir . "~/Maildir/personal/queue/cur")
+                   (message-send-mail-function . smtpmail-send-it)
+                   (smtpmail-smtp-user . "ilay.raz")
+                   (smtpmail-default-smtp-server . "smtp.gmail.com")
+                   (smtpmail-smtp-server . "smtp.gmail.com")
+                   (smtpmail-smtp-service . 587)
+                   (smtpmail-debug-info . t)
+                   (smtpmail-debug-verbose . t)
+                   (mu4e-maildir-shortcuts . ( ("/personal/INBOX"                 . ?i)
+                                                ("/personal/[personal].Sent Mail" . ?s)
+                                                ("/personal/[personal].Trash"     . ?t)
+                                                ("/personal/[personal].All Mail"  . ?a)
+                                                ("/personal/[personal].Starred"   . ?r)
+                                                ("/personal/[personal].drafts"    . ?d)))))
+
+          (make-mu4e-context
+           :name "ucsc"
+           :enter-func (lambda() (mu4e-message "Entering context ucsc"))
+           :leave-func (lambda() (mu4e-message "Leaving context ucsc"))
+           :match-func (lambda(msg)
+                         (when msg
+                           (mu4e-message-contact-field-matches
+                            msg '(:from :to :cc :bcc) "ilraz@ucsc.edu")))
+           :vars '((user-mail-address . "ilraz@ucsc.edu")
+                   (user-full-name . "Ilay Raz")
+                   (mu4e-sent-folder . "/ucsc/[ucsc].Sent Mail")
+                   (mu4e-drafts-folder . "/ucsc/[ucsc].drafts")
+                   (mu4e-trash-folder . "/ucsc/[ucsc].Trash")
+                   (mu4e-compose-format-flowed . t)
+                   (smtpmail-queue-dir . "~/Maildir/ucsc/queue/cur")
+                   (message-send-mail-function . smtpmail-send-it)
+                   (smtpmail-smtp-user . "ilraz")
+                   (smtpmail-default-smtp-server . "smtp.gmail.com")
+                   (smtpmail-smtp-server . "smtp.gmail.com")
+                   (smtpmail-smtp-service . 587)
+                   (smtpmail-debug-info . t)
+                   (smtpmail-debug-verbose . t)
+                   (mu4e-maildir-shortcuts . ( ("/ucsc/INBOX"             . ?i)
+                                                ("/ucsc/[ucsc].Sent Mail" . ?s)
+                                                ("/ucsc/[ucsc].Trash"     . ?t)
+                                                ("/ucsc/[ucsc].All Mail"  . ?a)
+                                                ("/ucsc/[ucsc].Starred"   . ?r)
+                                                ("/ucsc/[ucsc].drafts"    . ?d)))))))
+       :custom
+       (mu4e-maildir (expand-file-name "~/Maildir"))
+
+       ;; get mail
+       (mu4e-get-mail-command "mbsync -c ~/.config/mbsync/.mbsync -a")
+       (mu4e-view-prefer-html t)
+       (mu4e-update-interval 180)
+       (mu4e-headers-auto-update t)
+       (mu4e-compose-signature-auto-include nil)
+       (mu4e-compose-format-flowed t)
+
+       (mu4e-view-show-images t)
+       (mu4e-sent-messages-behavior 'delete) ;; let IMAP take care of this
+
+       ;; needed for mbsync
+       (mu4e-change-filenames-when-moving t)
+
+       (mu4e-attachment-dir "~/Downloads")
+       (message-kill-buffer-on-exit t)
+       (mu4e-compose-dont-reply-to-self)
+       (mu4e-view-show-addresses 't)
+       (mu4e-confirm-quit nil)
+
+       ;; mu4e-context
+       (mu4e-context-policy 'pick-first)
+       (mu4e-compose-context-policy 'always-ask))
    #+END_SRC

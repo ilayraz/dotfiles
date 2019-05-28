@@ -1,0 +1,173 @@
+# mbsyncrc based on
+# http://www.ict4g.net/adolfo/notes/2014/12/27/EmacsIMAP.html
+# ACCOUNT INFORMATION
+IMAPAccount personal
+# Address to connect to
+Host imap.gmail.com
+User ilay.raz@gmail.com
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.config/mbsync/personal.gpg"
+AuthMechs LOGIN
+SSLType IMAPS
+SSLVersions TLSv1.2
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+# THEN WE SPECIFY THE LOCAL AND REMOTE STORAGE
+# - THE REMOTE STORAGE IS WHERE WE GET THE MAIL FROM (E.G., THE
+#   SPECIFICATION OF AN IMAP ACCOUNT)
+# - THE LOCAL STORAGE IS WHERE WE STORE THE EMAIL ON OUR COMPUTER
+
+# REMOTE STORAGE (USE THE IMAP ACCOUNT SPECIFIED ABOVE)
+IMAPStore personal-remote
+Account personal
+
+# LOCAL STORAGE (CREATE DIRECTORIES with mkdir -p ~/Maildir/acc1-gmail)
+MaildirStore personal-local
+Path ~/Maildir/personal/
+Inbox ~/Maildir/personal/INBOX
+# REQUIRED ONLY IF YOU WANT TO DOWNLOAD ALL SUBFOLDERS; SYNCING SLOWS DOWN
+# SubFolders Verbatim
+
+# CONNECTIONS SPECIFY LINKS BETWEEN REMOTE AND LOCAL FOLDERS
+#
+# CONNECTIONS ARE SPECIFIED USING PATTERNS, WHICH MATCH REMOTE MAIl
+# FOLDERS. SOME COMMONLY USED PATTERS INCLUDE:
+#
+# 1 "*" TO MATCH EVERYTHING
+# 2 "!DIR" TO EXCLUDE "DIR"
+# 3 "DIR" TO MATCH DIR
+
+Channel personal-inbox
+Master :personal-remote:
+Slave :personal-local:
+Patterns "INBOX"
+Create Both
+Expunge Both
+SyncState *
+
+Channel personal-trash
+Master :personal-remote:"[Gmail]/Trash"
+Slave :personal-local:"[personal].Trash"
+Create Both
+Expunge Both
+SyncState *
+
+Channel personal-sent
+Master :personal-remote:"[Gmail]/Sent Mail"
+Slave :personal-local:"[personal].Sent Mail"
+Create Both
+Expunge Both
+SyncState *
+
+Channel personal-all
+Master :personal-remote:"[Gmail]/All Mail"
+Slave :personal-local:"[personal].All Mail"
+Create Both
+Expunge Both
+SyncState *
+
+Channel personal-starred
+Master :personal-remote:"[Gmail]/Starred"
+Slave :personal-local:"[personal].Starred"
+Create Both
+Expunge Both
+SyncState *
+
+# GROUPS PUT TOGETHER CHANNELS, SO THAT WE CAN INVOKE
+# MBSYNC ON A GROUP TO SYNC ALL CHANNELS
+#
+# FOR INSTANCE: "mbsync gmail" GETS MAIL FROM
+# "gmail-inbox", "gmail-sent", and "gmail-trash"
+#
+Group personal
+Channel personal-inbox
+Channel personal-sent
+Channel personal-trash
+Channel personal-all
+Channel personal-starred
+
+
+# ================================================================================
+
+
+# ACCOUNT INFORMATION
+IMAPAccount ucsc
+# Address to connect to
+Host imap.gmail.com
+User ilraz@ucsc.edu
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.config/mbsync/ucsc.gpg"
+AuthMechs LOGIN
+SSLType IMAPS
+SSLVersions TLSv1.2
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+# THEN WE SPECIFY THE LOCAL AND REMOTE STORAGE
+# - THE REMOTE STORAGE IS WHERE WE GET THE MAIL FROM (E.G., THE
+#   SPECIFICATION OF AN IMAP ACCOUNT)
+# - THE LOCAL STORAGE IS WHERE WE STORE THE EMAIL ON OUR COMPUTER
+
+# REMOTE STORAGE (USE THE IMAP ACCOUNT SPECIFIED ABOVE)
+IMAPStore ucsc-remote
+Account ucsc
+
+# LOCAL STORAGE (CREATE DIRECTORIES with mkdir -p ~/Maildir/ucsc)
+MaildirStore ucsc-local
+Path ~/Maildir/ucsc/
+Inbox ~/Maildir/ucsc/INBOX
+
+# CONNECTIONS SPECIFY LINKS BETWEEN REMOTE AND LOCAL FOLDERS
+#
+# CONNECTIONS ARE SPECIFIED USING PATTERNS, WHICH MATCH REMOTE MAIl
+# FOLDERS. SOME COMMONLY USED PATTERS INCLUDE:
+#
+# 1 "*" TO MATCH EVERYTHING
+# 2 "!DIR" TO EXCLUDE "DIR"
+# 3 "DIR" TO MATCH DIR
+
+Channel ucsc-inbox
+Master :ucsc-remote:
+Slave :ucsc-local:
+Patterns "INBOX"
+Create Both
+Expunge Both
+SyncState *
+
+Channel ucsc-trash
+Master :ucsc-remote:"[Gmail]/Trash"
+Slave :ucsc-local:"[ucsc].Trash"
+Create Both
+Expunge Both
+SyncState *
+
+Channel ucsc-sent
+Master :ucsc-remote:"[Gmail]/Sent Mail"
+Slave :ucsc-local:"[acc2].Sent Mail"
+Create Both
+Expunge Both
+SyncState *
+
+Channel ucsc-all
+Master :ucsc-remote:"[Gmail]/All Mail"
+Slave :ucsc-local:"[ucsc].All Mail"
+Create Both
+Expunge Both
+SyncState *
+
+Channel ucsc-starred
+Master :ucsc-remote:"[Gmail]/Starred"
+Slave :ucsc-local:"[ucsc].Starred"
+Create Both
+Expunge Both
+SyncState *
+
+# GROUPS PUT TOGETHER CHANNELS, SO THAT WE CAN INVOKE
+# MBSYNC ON A GROUP TO SYNC ALL CHANNELS
+#
+# FOR INSTANCE: "mbsync gmail" GETS MAIL FROM
+# "gmail-inbox", "gmail-sent", and "gmail-trash"
+#
+Group ucsc
+Channel ucsc-inbox
+Channel ucsc-sent
+Channel ucsc-trash
+Channel ucsc-all
+Channel ucsc-starred
