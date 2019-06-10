@@ -1,7 +1,7 @@
 set $mod Mod4
 
 set $term termite
-set $browser /usr/local/bin/firefox
+set $browser env firefox
 set $lockscreen /usr/local/bin/lockscreen
 set $menu dmenu_path | dmenu | xargs swaymsg exec
 
