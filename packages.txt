@@ -11,7 +11,7 @@ cryptboot
 culmus
 dnscrypt-proxy
 firefox
-firejail-apparmor
+firejail
 flatpak
 font-bh-ttf
 gdb
@@ -67,6 +67,7 @@ rtorrent
 rust
 sbupdate-git
 scdoc
+smplayer-svn
 snapper
 steam
 steam-fonts
