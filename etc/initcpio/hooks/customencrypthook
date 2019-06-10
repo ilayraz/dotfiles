@@ -1,0 +1,21 @@
+#!/usr/bin/ash
+
+run_hook() {
+	modprobe -a -q dm-crypt >/dev/null 2>&1
+	modprobe loop
+	modprobe ext4
+	[ "${quiet}" = "y" ] && CSQUIET=">/dev/null"
+
+	while [ ! -L '/dev/disk/by-id/usb-Philips_USB_Flash_Drive_050802016900447-0:0-part2' ]; do
+		echo 'Waiting for USB'
+		sleep 1
+	done
+
+	cryptsetup open /dev/disk/by-id/usb-Philips_USB_Flash_Drive_050802016900447-0:0-part2 cryptboot
+	mkdir -p /mnt
+	mount /dev/mapper/cryptboot /mnt
+	cryptsetup open /mnt/key.img lukskey
+	cryptsetup --header /mnt/header_ssd.img --key-file=/dev/mapper/lukskey --keyfile-offset=1 --keyfile-size=8192 open /dev/disk/by-id/wwn-0x5002538e40857cc4-part1 ssd
+	cryptsetup --header /mnt/header_hdd_2tb.img --key-file=/dev/mapper/lukskey --keyfile-offset=8193 --keyfile-size=8192 open /dev/disk/by-id/wwn-0x50014ee265c186a7-part1 hdd
+	cryptsetup close lukskey
+}
