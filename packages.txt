@@ -1,3 +1,4 @@
+amd-ucode
 android-sdk
 android-sdk-build-tools
 aosp-devel
@@ -19,7 +20,6 @@ gotop-bin
 grim-git
 i3status-rust-git
 imv
-intel-ucode
 iputils
 irssi
 isync
@@ -53,16 +53,17 @@ oh-my-zsh-git
 openbox
 openssh
 otf-eb-garamond
+p7zip
 pigz
 pkgconf
 postgresql
 psmisc
 pulsemixer
+rclone
 redshift-wlr-gamma-control-git
 reflector
 reiserfsprogs
 ripgrep
-rkhunter
 rtorrent
 rust
 sbupdate-git
@@ -97,7 +98,9 @@ usbutils
 valgrind
 vi
 vulkan-headers
+wget
 which
+whois
 wl-clipboard-git
 xf86-video-nouveau
 xfsprogs
