@@ -2,6 +2,7 @@ amd-ucode
 android-sdk
 android-sdk-build-tools
 aosp-devel
+apache
 autoconf
 automake
 bdf-unifont
@@ -59,12 +60,12 @@ pkgconf
 postgresql
 psmisc
 pulsemixer
+qbittorrent
 rclone
 redshift-wlr-gamma-control-git
 reflector
 reiserfsprogs
 ripgrep
-rtorrent
 rust
 sbupdate-git
 scdoc
