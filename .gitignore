@@ -8,5 +8,5 @@
 emacs/*
 !emacs/.emacs.d/configuration.org
 !emacs/.emacs.d/init.el
-!emacs/.emacs.d/bin/*n
+!emacs/.emacs.d/bin/*
 !emacs/.emacs.d/snippets/*
