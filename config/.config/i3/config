@@ -11,7 +11,7 @@ smart_gaps on
 
 font pango: Inconsolata, FontAwesome 14
 
-default_border pixel normal
+# default_border pixel normal
 default_floating_border none
 # hide_edge_borders both
 
