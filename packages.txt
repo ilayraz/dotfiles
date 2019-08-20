@@ -1,3 +1,4 @@
+adobe-source-han-sans-jp-fonts
 amd-ucode
 android-sdk
 android-sdk-build-tools
@@ -9,7 +10,9 @@ automake
 bdf-unifont
 chromium
 ckb-next
+compton
 cryptboot
+cuda
 culmus
 dnscrypt-proxy
 dolphin
@@ -20,7 +23,6 @@ firefox
 firejail
 flatpak
 font-bh-ttf
-gdb
 gotop-bin
 grim-git
 i3-gaps
@@ -42,6 +44,7 @@ man-pages
 meson
 mpd
 mpdris2
+mpv-git
 mu
 namcap
 nano
@@ -63,19 +66,19 @@ psmisc
 pulsemixer
 qbittorrent
 rclone
-redshift-wlr-gamma-control-git
+redshift
 reflector
 reiserfsprogs
 ripgrep
 rust
 sbupdate-git
 scdoc
-smplayer
 snapper
 steam
 steam-fonts
 stow
 strace
+tensorflow
 termite-nocsd
 texlive-bibtexextra
 texlive-fontsextra
