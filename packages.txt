@@ -44,7 +44,7 @@ man-pages
 meson
 mpd
 mpdris2
-mpv-git
+mpv-mpris
 mu
 namcap
 nano
@@ -61,6 +61,7 @@ p7zip
 parallel
 pigz
 pkgconf
+playerctl
 postgresql
 psmisc
 pulsemixer
