@@ -1,0 +1,11 @@
+directory: ~/music
+library: ~/music/dbs/beets.db
+plugins: mpdstats mpdupdate duplicates convert play
+import:
+    incremental: yes
+    autotag: no
+    duplicate_action: ask
+    write: no
+    link: yes
+play:
+    command: mpv

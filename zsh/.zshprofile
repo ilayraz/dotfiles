@@ -11,8 +11,10 @@ alias ec=~/.emacs.d/bin/ec
 alias et=~/.emacs.d/bin/et
 alias mus='ncmpcpp'
 alias cp='cp --reflink=auto --sparse=always'
-alias mpvs='mpv --profile=svp'
+alias mps=mpv
 alias mbsync='mbsync -c ~/.config/mbsync/.mbsync'
+alias i3lock='i3lock -B 10 -k -m --composite --timecolor 00ffffff --datecolor 00ffffff'
+alias watch="watch "
 
 # Exports
 export EDITOR=~/.emacs.d/bin/et
@@ -24,10 +26,14 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export PATH="${PATH}:${HOME}/bin"
 export PATH="$HOME/.node_modules/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
-export MOZ_ENABLE_WAYLAND=1
 
 manopt() {
   local cmd=$1 opt=$2
   [[ $opt == -* ]] || { (( ${#opt} == 1 )) && opt="-$opt" || opt="--$opt"; }
   man "$cmd" | col -b | awk -v opt="$opt" -v RS= '$0 ~ "(^|,)[[:blank:]]+" opt "([[:punct:][:space:]]|$)"'
+}
+
+ifind() {
+    local term=$1
+    find . -iname "*${term}*"
 }

@@ -38,5 +38,5 @@ fi
 
 numlockx &
 compton -b
-~./fehbg &
+~/.fehbg &
 exec /usr/bin/i3

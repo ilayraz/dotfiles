@@ -7,8 +7,11 @@ player = "mpd"
 buttons = ["play", "next"]
 
 [[block]]
+block = "pacman"
+
+[[block]]
 block = "net"
-device = "eno1"
+device = "enp4s0"
 ip = false
 speed_up = true
 speed_down = true
@@ -20,19 +23,12 @@ collapsed = false
 interval = 10
 
 [[block]]
-block = "memory"
-display_type = "memory"
-format_mem = "{Mup}%"
-format_swap = "{SUp}%"
-
-[[block]]
 block = "cpu"
 interval = 1
 
 [[block]]
-block = "load"
-interval = 1
-format = "{1m}"
+block = "nvidia_gpu"
+show_memory = false
 
 [[block]]
 block = "sound"
