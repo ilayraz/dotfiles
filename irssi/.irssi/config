@@ -406,7 +406,12 @@ statusbar = {
   };
 };
 settings = {
-  core = { real_name = "Unknown"; user_name = "Nonona"; nick = "Nonona"; };
+  core = {
+    real_name = "Unknown";
+    user_name = "Nonona";
+    nick = "Nonona";
+    timestamp_format = "%d.%H%M%S";
+  };
   "fe-text" = { actlist_sort = "refnum"; };
 };
 ignores = (
