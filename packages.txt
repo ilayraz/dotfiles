@@ -8,6 +8,7 @@ autoconf
 automake
 bdf-unifont
 beets
+bfg
 chromium
 ckb-next
 compton
@@ -67,7 +68,6 @@ playerctl
 postgresql
 psmisc
 pulsemixer
-python-docutils
 qbittorrent
 rclone
 redshift
