@@ -67,6 +67,7 @@ playerctl
 postgresql
 psmisc
 pulsemixer
+python-docutils
 qbittorrent
 rclone
 redshift
