@@ -486,6 +486,11 @@
        :config
        (yas-reload-all))
    #+END_SRC
+** LaTeX
+   #+BEGIN_SRC emacs-lisp
+     (use-package cdlatex
+       :hook (org-mode . turn-on-org-cdlatex))
+   #+End_SRC
 * Mail
 ** packages
    #+BEGIN_SRC emacs-lisp
