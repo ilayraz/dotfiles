@@ -17,6 +17,7 @@ culmus
 dnscrypt-proxy
 dolphin
 dunst
+duplicity
 ffnvcodec-headers
 firefox
 firejail
