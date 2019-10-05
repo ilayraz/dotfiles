@@ -166,6 +166,11 @@
       (if (y-or-n-p (format "Are you sure you want to close this frame?"))
           (save-buffers-kill-terminal)
         (message "Canceled frame close")))
+
+    (defun insert-current-date ()
+      "Insert current date at pointer"
+      (interactive)
+      (insert (shell-command-to-string "echo -n $(date +'%B %e, %Y')")))
   #+END_SRC
 
 * UI preferences
@@ -231,7 +236,8 @@
 ** Pretty symbols
    Use =prettify-symbols-mode= for pretty symbols
    #+BEGIN_SRC emacs-lisp
-  (global-prettify-symbols-mode t)
+     (global-prettify-symbols-mode t)
+     (setq prettify-symbols-unprettify-at-point t)
    #+END_SRC
 
 ** Don't open new file in new frame
@@ -319,10 +325,11 @@
    (setq ido-enable-flex-matching t)
    #+END_SRC
 
-* Keybindsn
+* Keybindings
   #+BEGIN_SRC emacs-lisp
     (global-set-key (kbd "M-o") 'other-window)
     (global-set-key (kbd "C-x C-b") 'ibuffer)
+    (global-set-key (kbd "C-c d") 'insert-current-date)
 
     (global-set-key (kbd "C-s") 'isearch-forward-regexp)
     (global-set-key (kbd "C-r") 'isearch-backward-regexp)
@@ -420,6 +427,7 @@
 *** Flycheck
     #+BEGIN_SRC emacs-lisp
       (use-package flycheck
+        :diminish
         :config
         (global-flycheck-mode))
     #+END_SRC
@@ -446,6 +454,7 @@
 ** Company
    #+BEGIN_SRC emacs-lisp
      (use-package company
+       :diminish
        :bind ("C-c f" . company-complete)
        :init
        (add-hook 'after-init-hook 'global-company-mode))
@@ -474,7 +483,7 @@
 ** which-key
    #+BEGIN_SRC emacs-lisp
      (use-package which-key
-       :defer 0.2
+       :defer 1
        :diminish
        :config
        (which-key-mode))
@@ -482,15 +491,45 @@
 ** YASnippet
    #+BEGIN_SRC emacs-lisp
      (use-package yasnippet
-       :hook ((org-mode latex-mode) . yas-minor-mode)
+       :defer 5
+       :custom
+       (yas-global-mode 1)
        :config
        (yas-reload-all))
    #+END_SRC
 ** LaTeX
-   #+BEGIN_SRC emacs-lisp
-     (use-package cdlatex
-       :hook (org-mode . turn-on-org-cdlatex))
-   #+End_SRC
+*** CDLatex
+       #+BEGIN_SRC emacs-lisp
+         (use-package cdlatex
+           :diminish
+           :hook ((org-mode . turn-on-org-cdlatex)
+                  ((latex-mode LaTeX-mode) . cdlatex-mode))
+           :config
+           (add-to-list 'cdlatex-math-symbol-alist
+                        '(123 ("\\subseteq" "\\subset")))
+           (add-to-list 'cdlatex-math-symbol-alist
+                        '(125 ("\\supseteq" "\\supset"))))
+    #+End_SRC
+*** AUCTeX
+    #+BEGIN_SRC emacs-lisp
+      (use-package auctex
+        :defer t
+        :custom
+        (TeX-auto-save t)
+        (TeX-parse-self t)
+
+        :config
+        (setq-default TeX-master nil))
+    #+END_SRC
+**** RefTeX
+     #+BEGIN_SRC emacs-lisp
+       (use-package reftex
+         :diminish
+         :ensure nil
+         :hook ((LaTeX-mode latex-mode) . turn-on-reftex)
+         :custom
+         (reftex-plug-into-AUCTeX t))
+     #+END_SRC
 * Mail
 ** packages
    #+BEGIN_SRC emacs-lisp
