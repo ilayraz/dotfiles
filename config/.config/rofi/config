@@ -1,0 +1,3 @@
+rofi.theme: solarized
+rofi.modi: drun,window
+rofi.show-icons: true

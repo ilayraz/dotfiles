@@ -15,6 +15,9 @@ alias mps=mpv
 alias mbsync='mbsync -c ~/.config/mbsync/.mbsync'
 alias i3lock='i3lock -B 10 -k -m --composite --timecolor 00ffffff --datecolor 00ffffff'
 alias watch="watch "
+alias pf="ps aux | rg"
+# Until djvulibre is fixed
+alias evince="qemu-x86_64 /usr/bin/evince"
 
 # Exports
 export EDITOR=~/.emacs.d/bin/et
@@ -24,7 +27,7 @@ export TERM=rxvt-unicode-256color
 export npm_config_prefix=~/.node_modules
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export PATH="${PATH}:${HOME}/bin"
-export PATH="$HOME/.node_modules/bin:$PATH"
+export PATH="${PATH}:$HOME/.node_modules/bin"
 export XDG_CONFIG_HOME="$HOME/.config"
 
 manopt() {
@@ -36,6 +39,12 @@ manopt() {
 ifind() {
     local term=$1
     find . -iname "*${term}*"
+}
+
+# Open in evince and close console
+ev() {
+    local name=$1
+    evince "$1"&|; exit
 }
 
 # Background job when pressing ctrl+Z on empty prompt

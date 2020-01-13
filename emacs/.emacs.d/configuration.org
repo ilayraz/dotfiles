@@ -352,8 +352,12 @@
     (when (daemonp)
       (global-set-key (kbd "C-x C-c") 'ask-before-closing))
 
-
+    ;; Unbind suspend-frame
     (global-unset-key (kbd "C-z"))
+
+    ;; Unbind overwrite-mode
+    (global-unset-key (kbd "<insert>"))
+    (global-unset-key (kbd "<insertchar>"))
   #+END_SRC
 * Org-mode
 ** Display preferences
