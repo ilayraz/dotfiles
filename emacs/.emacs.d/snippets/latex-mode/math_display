@@ -1,8 +1,7 @@
 # -*- mode: snippet -*-
-# name: math_display
+# name: dm
 # key: dm
 # --
-
 \[
 $> $0
 \]

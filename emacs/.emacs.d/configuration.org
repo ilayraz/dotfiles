@@ -135,6 +135,12 @@
      (setq auto-save-visited-file-name nil)
      (auto-save-visited-mode 1)
    #+END_SRC
+** Spell check
+   #+BEGIN_SRC emacs-lisp
+     (when (executable-find "hunspell")
+       (setq-default ispell-program-name "hunspell")
+       (setq ispell-really-hunspell t))
+   #+END_SRC
 * Utility functions
   #+BEGIN_SRC emacs-lisp
     (defun insert-newline ()
@@ -304,6 +310,12 @@
         :mode "\\.hs\\'"
         :interpreter "haskell")
     #+END_SRC
+** GAP
+   #+BEGIN_SRC emacs-lisp
+     (use-package gap-mode
+       :custom
+       (gap-executable "/usr/bin/gap"))
+   #+END_SRC
 * File finding
 ** Set defualt directory to home
    #+BEGIN_SRC emacs-lisp
@@ -512,7 +524,14 @@
            (add-to-list 'cdlatex-math-symbol-alist
                         '(123 ("\\subseteq" "\\subset")))
            (add-to-list 'cdlatex-math-symbol-alist
-                        '(125 ("\\supseteq" "\\supset"))))
+                        '(125 ("\\supseteq" "\\supset")))
+           ;; (add-to-list 'cdlatex-math-modify-alist
+           ;;              '(102 "\\mathfrak" nil t nil nil))
+           ;; (add-to-list 'cdlatex-math-modify-alist
+           ;;              '(66 "\\mathbb" nil t nil nil))
+           :bind (:map cdlatex-mode-map
+                       ("'" . cdlatex-math-symbol)
+                       ("C-c C-k" . cdlatex-math-modify)))
     #+End_SRC
 *** AUCTeX
     #+BEGIN_SRC emacs-lisp

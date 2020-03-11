@@ -1,7 +1,5 @@
 #!/bin/zsh
 
-neofetch
-
 # Aliases
 alias ls='ls --color=auto'
 alias ll='ls -lha'
@@ -75,3 +73,5 @@ ctrl_z_bg_disown_precmd() {
 zle -N ctrl-z-bg-disown
 bindkey '' ctrl-z-bg-disown
 precmd_functions+=ctrl_z_bg_disown_precmd
+
+neofetch
