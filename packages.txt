@@ -1,12 +1,13 @@
 adobe-source-han-sans-jp-fonts
 amd-ucode
 anaconda
+android-tools
+android-udev
 apache
+appstream-glib
 arch-install-scripts
 asp
 aspell-en
-autoconf
-automake
 base
 bdf-unifont
 beets
@@ -30,6 +31,8 @@ flex
 font-bh-ttf
 ghc
 gifsicle
+gnome-common
+gobject-introspection
 gotop-bin
 grim-git
 hugin
@@ -42,7 +45,6 @@ isync
 jfsutils
 keepass
 ktouch
-lib32-gamemode
 lib32-vulkan-icd-loader
 libreoffice-fresh
 libva-utils
@@ -82,7 +84,6 @@ pigz
 playerctl
 postgresql
 pulsemixer
-python-matplotlib
 python2-boto
 python2-xdg
 qbittorrent
@@ -92,9 +93,11 @@ reflector
 reiserfsprogs
 ripgrep
 rust
+sagemath
 sbupdate-git
 scdoc
 scrot
+slack-desktop
 snapper
 steam
 steam-fonts
@@ -121,6 +124,7 @@ ttf-inconsolata
 ttf-inconsolata-g
 unbound
 unrar
+v4l2loopback-dkms
 valgrind
 vi
 waifu2x-git
@@ -134,4 +138,5 @@ xorg-xhost
 xorg-xinit
 xorg-xinput
 yay
+zoom
 zsh-completions
