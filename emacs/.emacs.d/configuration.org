@@ -218,7 +218,8 @@
 ** Set defualt font
    Increase =font-height=
    #+BEGIN_SRC emacs-lisp
-     (set-face-attribute 'default nil :height 250 :family "Inconsolata")
+     ;; (set-face-attribute 'default nil :height 250 :family "Inconsolata")
+     (set-face-attribute 'default nil :height 250)
    #+END_SRC
 
 ** Defualt max line length
@@ -525,10 +526,14 @@
                         '(123 ("\\subseteq" "\\subset")))
            (add-to-list 'cdlatex-math-symbol-alist
                         '(125 ("\\supseteq" "\\supset")))
-           ;; (add-to-list 'cdlatex-math-modify-alist
-           ;;              '(102 "\\mathfrak" nil t nil nil))
-           ;; (add-to-list 'cdlatex-math-modify-alist
-           ;;              '(66 "\\mathbb" nil t nil nil))
+           (add-to-list 'cdlatex-math-symbol-alist
+                        '(99 ("\\circ")))
+           (add-to-list 'cdlatex-math-symbol-alist
+                        '(102 ("\\varphi" "\\phi")))
+           (add-to-list 'cdlatex-math-modify-alist
+                        '(102 "\\mathfrak" nil t nil nil))
+           (add-to-list 'cdlatex-math-modify-alist
+                        '(66 "\\mathbb" nil t nil nil))
            :bind (:map cdlatex-mode-map
                        ("'" . cdlatex-math-symbol)
                        ("C-c C-k" . cdlatex-math-modify)))
