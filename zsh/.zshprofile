@@ -11,7 +11,7 @@ alias mus='ncmpcpp'
 alias cp='cp --reflink=auto --sparse=always'
 alias mps=mpv
 alias mbsync='mbsync -c ~/.config/mbsync/.mbsync'
-alias i3lock='i3lock -B 10 -k -m --composite --timecolor 00ffffff --datecolor 00ffffff'
+alias i3lock='i3lock -B 10 -k --pass-media-keys --composite --timecolor 00ffffff --datecolor 00ffffff'
 alias watch="watch "
 alias pf="ps aux | rg"
 # Until djvulibre is fixed
