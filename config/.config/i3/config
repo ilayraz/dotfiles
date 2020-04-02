@@ -3,7 +3,7 @@ set $mod Mod4
 set $term termite
 set $browser env firefox
 set $menu rofi -show drun
-set $lockscreen i3lock -B 10 -k -m --composite --timecolor 00ffffff --datecolor 00ffffff
+set $lockscreen i3lock -B 10 -k --pass-media-keys --composite --timecolor 00ffffff --datecolor 00ffffff
 
 gaps inner 7
 gaps outer 0
