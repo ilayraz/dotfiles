@@ -1,78 +1,84 @@
-# If you come from bash you might have to change your $PATH.
-#export PATH='$HOME/bin:/usr/local/bin:$PATH'
-
-# Path to your oh-my-zsh installation.
-ZSH=/usr/share/oh-my-zsh/
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-    colored-man-pages
-    web-search
-)
-
-ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
-if [[ ! -d $ZSH_CACHE_DIR ]]; then
-  mkdir $ZSH_CACHE_DIR
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source $ZSH/oh-my-zsh.sh
+ZHOME="${ZINIT_HOME:-${HOME}}/.zsh.d"
+ZBIN="${ZHOME}/bin"
 
-source ~/.zshprofile
+# $1,... - script to be compiled
+compile_or_recompile() {
+    local file
+    for file in "$@"; do
+        if [[ -f $file ]] && [[ ! -f ${file}.zwc ]] \
+               || [[ $file -nt ${file}.zwc ]]; then
+            zcompile "$file"
+        fi
+    done
+}
 
+# External files
+
+compile_or_recompile "${HOME}/.zshrc" "${ZHOME}/alias.zsh" "${ZHOME}/opts.zsh" \
+                     "${ZHOME}/utils.zsh"
+source "${ZHOME}/opts.zsh"
+source "${ZHOME}/utils.zsh"
+source "${ZHOME}/alias.zsh"
+
+# zinit
+if [[ ! -d ${ZBIN} ]]; then
+    print 'Installing zinit...'
+    mkdir -p "${ZHOME}"
+    git clone https://github.com/zdharma/zinit.git "${ZBIN}"
+    compile_or_recompile "${ZBIN}/zinit.zsh"
+fi
+
+typeset -A ZINIT
+ZINIT[HOME_DIR]="$ZHOME"
+ZINIT[ZCOMPDUMP_PATH]="${ZHOME}/.zcompdump"
+
+source "${ZBIN}/zinit.zsh"
+
+# Packages
+# Themes
+
+fasd_cache_file="${ZBIN}/fasd_cache.zsh"
+if [[ "${commands[fasd]}" -nt "$fasd_cache_file" || ! -s "$fasd_cache_file" ]]; then
+    fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install \
+         zsh-wcomp zsh-wcomp-install \
+         >"$fasd_cache_file" 2>/dev/null;
+    compile_or_recompile "$fasd_cache_file"
+fi
+source "$fasd_cache_file"
+
+zinit ice depth'1' atload'!compile_or_recompile recsource ~/.p10k.zsh; source ~/.p10k.zsh'
+zinit light romkatv/powerlevel10k
+
+zinit ice wait lucid atclone"dircolors -b LS_COLORS > clrs.zsh" \
+    atpull'%atclone' pick"clrs.zsh" nocompile'!' \
+    atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
+zinit light trapd00r/LS_COLORS
+
+zinit ice lucid depth'1' light-mode trigger-load'!man'
+zinit snippet OMZP::colored-man-pages
+
+zinit ice lucid trigger-load'!conda'
+zinit snippet "${ZHOME}/my_plugins/conda.zsh"
+
+# fzf config
+zinit ice lucid wait if'[[ -f "/usr/share/fzf/key-bindings.zsh" ]]'
+zinit snippet "/usr/share/fzf/key-bindings.zsh"
+
+zinit wait lucid depth'1' light-mode for \
+      atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+          zdharma/fast-syntax-highlighting \
+      blockfe \
+          zsh-users/zsh-completions \
+      atload'!_zsh_autosuggest_start' \
+          zsh-users/zsh-autosuggestions
+
+# Completions
+autoload -Uz compinit
+compinit -u -d "${HOME}/.zcompdump"
