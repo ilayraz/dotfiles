@@ -42,26 +42,22 @@
 % Set ToC depth to only show up to sections
 \setcounter{tocdepth}{1}
 
-% Box theorems
-\RequirePackage{mdframed}
-\mdfsetup{skipabove=1em,skipbelow=0em}
+
+% Theorem, definition enviroments
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{prop}{Proposition}[section]
+
+
 \theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
 
-\newmdtheoremenv[nobreak=true]{lemma}{Lemma}
-\newmdtheoremenv[nobreak=true]{prop}{Proposition}
-\newmdtheoremenv[nobreak=true]{definition}{Definition}
-\newmdtheoremenv[nobreak=true]{theorem}{Theorem}
-\newmdtheoremenv[nobreak=true]{corollary}{Corollary}
-\newtheorem{eg}{Example}
-\newtheorem{notation}{Notation}
-\newtheorem{remark}{Remark}
-
-
-% Fix spacing of theorem
-% http://tex.stackexchange.com/questions/22119/how-can-i-change-the-spacing-before-theorems-with-amsthm
-\def\thm@space@setup{
-  \thm@preskip=\parskip\thm@postskip=0pt
-}
+\theoremstyle{remark}
+\newtheorem*{notation}{Notation}
+\newtheorem*{remark}{Remark}
 
 \fi
 
@@ -150,6 +146,15 @@
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\Dim}{Dim}
 \DeclareMathOperator{\Deg}{Deg}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Out}{Out}
+
+% Groups
+\DeclareMathOperator{\Cy}{C}
+\DeclareMathOperator{\Di}{D}
+\DeclareMathOperator{\Sy}{S}
+\DeclareMathOperator{\Al}{A}
 
 % Real Imaginary part functions
 \let\Re\relax

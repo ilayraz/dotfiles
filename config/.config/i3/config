@@ -3,7 +3,7 @@ set $mod Mod4
 set $term termite
 set $browser env firefox
 set $menu rofi -show drun
-set $lockscreen i3lock -B 10 -k --pass-media-keys --composite --timecolor 00ffffff --datecolor 00ffffff
+set $lockscreen pactl set-sink-mute @DEFAULT_SINK@ on && i3lock -B 10 -k --pass-media-keys --composite --timecolor 00ffffff --datecolor 00ffffff
 
 gaps inner 7
 gaps outer 0
@@ -42,8 +42,8 @@ bindsym $mod+e exec --no-startup-id emacsclient -a "" -c
 # Reload configuration file
 bindsym $mod+Shift+c reload
 
-# Exit sway (logs you out of your wayland session)
-bindsym $mod+Shift+e exit
+## Exit sway (logs you out of your wayland session)
+# bindsym $mod+Shift+e exit
 
 # Move focus around
 bindsym $mod+l focus left
@@ -112,6 +112,9 @@ bindsym $mod+r mode "resize"
 exec --no-startup-id redshift
 exec --no-startup-id ckb-next --background
 exec --no-startup-id dunst
+exec --no-startup-id discord
+exec --no-startup-id steam
+
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume

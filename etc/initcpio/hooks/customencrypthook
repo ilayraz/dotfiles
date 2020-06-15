@@ -6,12 +6,12 @@ run_hook() {
 	modprobe ext4
 	[ "${quiet}" = "y" ] && CSQUIET=">/dev/null"
 
-	while [ ! -L '/dev/disk/by-id/usb-Philips_USB_Flash_Drive_050802016900447-0:0-part2' ]; do
+	while [ ! -L '/dev/disk/by-id/ata-Samsung_SSD_840_EVO_250GB_S1DBNSCF805751B-part2' ]; do
 		echo 'Waiting for USB'
 		sleep 1
 	done
 
-	cryptsetup open /dev/disk/by-id/usb-Philips_USB_Flash_Drive_050802016900447-0:0-part2 cryptboot
+	cryptsetup open /dev/disk/by-id/ata-Samsung_SSD_840_EVO_250GB_S1DBNSCF805751B-part2 cryptboot
 	mkdir -p /mnt
 	mount /dev/mapper/cryptboot /mnt
 	cryptsetup open /mnt/key.img lukskey

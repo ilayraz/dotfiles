@@ -1,5 +1,6 @@
 ;; (package-initialize)
 
+(setq vc-follow-symlinks t)
 (org-babel-load-file "~/.emacs.d/configuration.org")
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

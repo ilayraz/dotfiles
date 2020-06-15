@@ -3,18 +3,19 @@ alias ls='ls --color=auto'
 alias ll='ls -lha'
 alias rg='rg --smart-case --follow'
 alias tree='tree -C'
-alias ec=~/.emacs.d/bin/ec
-alias et=~/.emacs.d/bin/et
+alias ec="~/.emacs.d/bin/ec"
+alias et="~/.emacs.d/bin/et"
 alias mus='ncmpcpp'
 alias cp='cp --reflink=auto --sparse=always'
 alias mpc="mpc -h '${MDPASS}@localhost'"
-alias mfp='mpc -h "${MPDPASS}@localhost" -f "[[%artist% - ]%title%][ - %genre%] #|[%file%]" listall | fzf -m --print0 | cut -d"|" -f2 -s -z | xargs -rox0 -n 1 -- mpc  -h "${MPDPASS}@localhost" insert; mpc -h "${MPDPASS}@localhost" play; mpc -h "${MPDPASS}@localhost" next'
+alias mpf='mpc -h "${MPDPASS}@localhost" -f "[[%artist% - ]%title%][ - %genre%] #|[%file%]" listall | fzf -m --print0 | cut -d"|" -f2 -s -z | xargs -rox0 -n 1 -- mpc  -h "${MPDPASS}@localhost" insert'
+alias valful='valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind.log'
 alias mbsync='mbsync -c ~/.config/mbsync/.mbsync'
 alias i3lock='i3lock -B 10 -k --pass-media-keys --composite --timecolor 00ffffff --datecolor 00ffffff'
 alias watch="watch "
 alias pf="ps aux | rg"
 # Pick packages with fzf, and then install them
-alias yfz="yay -Slq | fzf -m --print0 --preview 'yay -Si {1}' | xargs -ro0 yay -S"
+alias yas="yay -Slq | fzf -m --print0 --preview 'yay -Si {1}' | xargs -ro0 yay -S"
 
 # fasd alias
 alias a='fasd -a'

@@ -39,6 +39,7 @@ gnu-netcat
 gobject-introspection
 gotop-bin
 grim-git
+hdparm
 hugin
 hunspell-he
 hyphen-en
@@ -47,7 +48,7 @@ inkscape
 irssi
 isync
 jfsutils
-keepass
+kolourpaint
 ktouch
 libreoffice-fresh
 libselinux
@@ -89,12 +90,14 @@ pigz
 playerctl
 postgresql
 pulsemixer
+python-nltk
+python-regex
+python-scikit-learn
 python2-pyxdg
 qbittorrent
 rclone
 redshift
 reflector
-reiserfsprogs
 ripgrep
 rust
 sagemath
@@ -102,7 +105,8 @@ sbupdate-git
 scdoc
 scrot
 slack-desktop
-snapper
+smartmontools
+snap-pac
 steam
 steam-fonts
 stow
@@ -135,6 +139,7 @@ wget
 whois
 wine-gecko
 wine-mono
+xdotool
 xf86-video-nouveau
 xorg-xdpyinfo
 xorg-xhost

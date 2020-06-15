@@ -324,7 +324,7 @@
   (setq default-directory "~/")
    #+END_SRC
 ** Follow symlinks
-   #+BEGIN_SRC emacs-lispq
+   #+BEGIN_SRC emacs-lisp
   (setq vc-follow-symlinks t)
    #+END_SRC
 ** Add human readable size units to dired
@@ -416,7 +416,7 @@
      #+BEGIN_SRC emacs-lisp
        (use-package htmlize)
      #+END_SRC
-*** LaTeX
+*** TODO LaTeX
     #+BEGIN_SRC emacs-lisp
       (add-to-list 'org-latex-packages-alist '("" "mypackage"))
       (add-to-list 'org-latex-packages-alist '("" "amsthm"))

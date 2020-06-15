@@ -1,0 +1,6 @@
+ignore noexec ${HOME}
+include disable-exec.inc
+
+seccomp !chroot
+
+private-bin tclsh
