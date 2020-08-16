@@ -1,9 +1,4 @@
-# noblacklist /usr/share/icons
-# whitelist /usr/share/icons
-# read-only /usr/share/icons
-# noblacklist /usr/share/mime
-# whitelist /usr/share/mime
-# read-only /usr/share/mime
-# whitelist /usr/share/fonts
-# whitelist /usr/share/fonts
-# read-only /usr/share/fonts
+noblacklist ${HOME}/.steam_games
+whitelist ${HOME}/.steam_games
+noblacklist /games_swap/games/steam/*
+whitelist /games_swap/games/steam/*
