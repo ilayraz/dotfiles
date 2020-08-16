@@ -10,3 +10,7 @@
 	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
 [color]
 	ui = auto
+[core]
+    pager = delta
+[interactice]
+    diffFilter = delta --color-only
