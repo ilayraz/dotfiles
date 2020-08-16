@@ -1,6 +1,5 @@
 adobe-source-han-sans-jp-fonts
 amd-ucode
-anaconda
 android-tools
 android-udev
 apache
@@ -9,6 +8,7 @@ arch-install-scripts
 asp
 aspell-en
 base
+bat
 bdf-unifont
 beets
 bison
@@ -25,6 +25,7 @@ dunst
 duplicity
 evince-no-gnome
 fasd
+fd
 feh
 ffnvcodec-headers
 firefox
@@ -34,10 +35,10 @@ font-bh-ttf
 fzf
 ghc
 gifsicle
+git-delta
 gnome-common
 gnu-netcat
 gobject-introspection
-gotop-bin
 grim-git
 hdparm
 hugin
@@ -50,14 +51,15 @@ isync
 jfsutils
 kolourpaint
 ktouch
+lib32-mangohud
 libreoffice-fresh
-libselinux
 libva-utils
 linux-lts
 linux-zen
 logwatch
 man-db
 man-pages
+mangohud
 meson
 mkvtoolnix-cli
 mons
@@ -86,10 +88,13 @@ parallel
 patchelf
 pax-utils
 picard
+picom
 pigz
+pkgconf
 playerctl
 postgresql
 pulsemixer
+python-language-server
 python-nltk
 python-regex
 python-scikit-learn
@@ -104,7 +109,6 @@ sagemath
 sbupdate-git
 scdoc
 scrot
-slack-desktop
 smartmontools
 snap-pac
 steam
@@ -113,6 +117,7 @@ stow
 strace
 tensorflow-cuda
 termite-nocsd
+texlab
 texlive-bibtexextra
 texlive-fontsextra
 texlive-formatsextra
@@ -132,7 +137,6 @@ ttf-inconsolata-g
 ttf-meslo-nerd-font-powerlevel10k
 unbound
 unrar
-v4l2loopback-dkms
 valgrind
 vi
 wget
@@ -146,5 +150,5 @@ xorg-xhost
 xorg-xinit
 xorg-xinput
 yay
-zoom
+ytop
 zsh-completions
