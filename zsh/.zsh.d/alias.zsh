@@ -3,6 +3,7 @@ alias ls='ls --color=auto'
 alias ll='ls -lha'
 alias rg='rg --smart-case --follow'
 alias tree='tree -C'
+alias ytop='ytop -p'
 alias ec="~/.emacs.d/bin/ec"
 alias et="~/.emacs.d/bin/et"
 alias mus='ncmpcpp'
