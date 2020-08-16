@@ -439,6 +439,12 @@
     #+BEGIN_SRC emacs-lisp
       (use-package use-package-ensure-system-package)
     #+END_SRC
+*** Ripgrep
+    #+begin_src emacs-lisp
+      (use-package rg
+        :ensure-system-package (rg . ripgrep)
+        :bind ("C-c s" . rg-menu))
+    #+end_src
 ** Git
 *** Magit
     Use =C-x g= to bring up the status menu
@@ -448,6 +454,13 @@
         (global-magit-file-mode)
         :bind ("C-x g" . magit-status))
     #+END_SRC
+**** Use =delta= for diffs if installed
+     #+begin_src emacs-lisp
+       (use-package magit-delta
+         :after magit
+         :ensure-system-package (delta . git-delta)
+         :hook (magit-mode . magit-delta-mode))
+     #+end_src
 *** Highlight uncommited changes
     Use =diff-hl= package to highlight changed-and-commited lines when programming
     #+BEGIN_SRC emacs-lisp
@@ -498,7 +511,7 @@
        :bind-keymap
        ("C-c p" . projectile-command-map)
        :config
-       (projectile-mode +1)
+       (projectile-mode +1))
    #+end_src
 ** which-key
    #+BEGIN_SRC emacs-lisp
