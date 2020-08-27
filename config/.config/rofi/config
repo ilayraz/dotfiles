@@ -1,3 +1,4 @@
 rofi.theme: solarized
 rofi.modi: drun,window
 rofi.show-icons: true
+rofi.theme: /usr/share/rofi/themes/solarized_alternate.rasi
