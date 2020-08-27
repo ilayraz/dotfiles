@@ -5,8 +5,10 @@ android-udev
 apache
 appstream-glib
 arch-install-scripts
+arm-none-eabi-gcc
 asp
 aspell-en
+avrdude
 base
 bat
 bdf-unifont
@@ -18,11 +20,14 @@ ckb-next
 cryptboot
 cuda-9.0
 culmus
+dfu-programmer
+dfu-util
 discord
 dnscrypt-proxy
 dolphin
 dunst
 duplicity
+emacs-git
 evince-no-gnome
 fasd
 fd
@@ -59,7 +64,6 @@ linux-zen
 logwatch
 man-db
 man-pages
-mangohud
 meson
 mkvtoolnix-cli
 mons
@@ -67,7 +71,6 @@ mpc
 mpd
 mpdris2
 mpv-mpris
-mu
 namcap
 nano
 ncmpcpp
@@ -100,6 +103,7 @@ python-regex
 python-scikit-learn
 python2-pyxdg
 qbittorrent
+ranger
 rclone
 redshift
 reflector
