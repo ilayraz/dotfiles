@@ -56,7 +56,10 @@ isync
 jfsutils
 kolourpaint
 ktouch
+leagueoflegends-git
+lib32-libpng12
 lib32-mangohud
+libpng12
 libreoffice-fresh
 libva-utils
 linux-lts
@@ -94,6 +97,7 @@ picard
 picom
 pigz
 pkgconf
+pkgstats
 playerctl
 postgresql
 pulsemixer
@@ -108,7 +112,7 @@ rclone
 redshift
 reflector
 ripgrep
-rust
+rustup
 sagemath
 sbupdate-git
 scdoc
@@ -143,7 +147,6 @@ unbound
 unrar
 valgrind
 vi
-wget
 whois
 wine-gecko
 wine-mono
