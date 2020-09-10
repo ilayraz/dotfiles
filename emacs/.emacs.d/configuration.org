@@ -310,6 +310,12 @@
        :custom
        (gap-executable "/usr/bin/gap"))
    #+END_SRC
+** Rust
+   #+begin_src emacs-lisp
+     (use-package rustic
+       :mode ("\\.rs\\'" . rustic-mode)
+       :interpreter ("rust" . rustic-mode))
+   #+end_src
 * File finding
 ** Set defualt directory to home
    #+BEGIN_SRC emacs-lisp
@@ -445,6 +451,14 @@
         :ensure-system-package (rg . ripgrep)
         :bind ("C-c s" . rg-menu))
     #+end_src
+*** smart parenthesis
+    #+begin_src emacs-lisp
+      (use-package smartparens
+        :hook (prog-mode . smartparens-mode)
+        :config
+        (sp-local-pair 'rustic-mode "'" nil :actions '(:rem insert))
+        (sp-local-pair 'emacs-lisp-mode "'" nil :actions '(:rem insert)))
+    #+end_src
 ** Git
 *** Magit
     Use =C-x g= to bring up the status menu
@@ -508,6 +522,7 @@
 ** Projectile
    #+begin_src emacs-lisp
      (use-package projectile
+       :diminish
        :bind-keymap
        ("C-c p" . projectile-command-map)
        :config
@@ -551,8 +566,8 @@
            (add-to-list 'cdlatex-math-modify-alist
                         '(66 "\\mathbb" nil t nil nil))
            :bind (:map cdlatex-mode-map
-                       ("'" . cdlatex-math-symbol)
-                       ("C-c C-k" . cdlatex-math-modify)))
+                       ("C-'" . cdlatex-math-symbol)
+                       ("M-'" . cdlatex-math-modify)))
     #+End_SRC
 *** AUCTeX
     #+BEGIN_SRC emacs-lisp
