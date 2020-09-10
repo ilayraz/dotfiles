@@ -42,5 +42,6 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
 MPDPASS='ZQPF84fj%*?dsSEz'
 
 export PATH="${PATH}:${HOME}/bin"
-export PATH="${PATH}:$HOME/.node_modules/bin"
+export PATH="${PATH}:${HOME}/.node_modules/bin"
 export PATH="${PATH}:/opt/anaconda/bin"
+export PATH="${PATH}:${HOME}/Desktop"
