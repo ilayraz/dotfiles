@@ -4,13 +4,13 @@ android-tools
 android-udev
 apache
 appstream-glib
+arandr
 arch-install-scripts
+aria2
 arm-none-eabi-gcc
-asp
 aspell-en
 avrdude
 base
-bat
 bdf-unifont
 beets
 bison
@@ -22,7 +22,7 @@ cuda-9.0
 culmus
 dfu-programmer
 dfu-util
-discord
+discord_arch_electron
 dnscrypt-proxy
 dolphin
 dunst
@@ -32,6 +32,7 @@ evince-no-gnome
 fasd
 fd
 feh
+ffmt-bin
 ffnvcodec-headers
 firefox
 firejail
@@ -40,7 +41,8 @@ font-bh-ttf
 fzf
 ghc
 gifsicle
-git-delta
+git-delta-bin
+gl-gsync-demo
 gnome-common
 gnu-netcat
 gobject-introspection
@@ -50,6 +52,7 @@ hugin
 hunspell-he
 hyphen-en
 i3status-rust-git
+inetutils
 inkscape
 irssi
 isync
@@ -65,6 +68,7 @@ libva-utils
 linux-lts
 linux-zen
 logwatch
+love
 man-db
 man-pages
 meson
@@ -78,11 +82,9 @@ namcap
 nano
 ncmpcpp
 netctl
-netstat-nat
 numlockx
 nvidia-dkms
 obs-studio
-oh-my-zsh-git
 openbox
 openconnect
 osu
@@ -91,6 +93,7 @@ p7zip
 pacman-contrib
 pacutils
 parallel
+paru
 patchelf
 pax-utils
 picard
@@ -156,6 +159,5 @@ xorg-xdpyinfo
 xorg-xhost
 xorg-xinit
 xorg-xinput
-yay
 ytop
 zsh-completions

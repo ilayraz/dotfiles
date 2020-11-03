@@ -43,7 +43,7 @@ bindsym $mod+e exec --no-startup-id emacsclient -a "" -c
 bindsym $mod+Shift+c reload
 
 ## Exit sway (logs you out of your wayland session)
-# bindsym $mod+Shift+e exit
+bindsym $mod+Shift+Control+e exit
 
 # Move focus around
 bindsym $mod+l focus left

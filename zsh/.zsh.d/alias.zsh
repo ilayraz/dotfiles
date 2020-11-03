@@ -15,8 +15,7 @@ alias mbsync='mbsync -c ~/.config/mbsync/.mbsync'
 alias i3lock='i3lock -B 10 -k --pass-media-keys --composite --timecolor 00ffffff --datecolor 00ffffff'
 alias watch="watch "
 alias pf="ps aux | rg"
-# Pick packages with fzf, and then install them
-alias yas="yay -Slq | fzf -m --print0 --preview 'yay -Si {1}' | xargs -ro0 yay -S"
+alias gis="git status"
 
 # fasd alias
 alias a='fasd -a'
