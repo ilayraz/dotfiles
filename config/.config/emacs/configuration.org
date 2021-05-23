@@ -31,7 +31,7 @@
 * General
 ** Keep changes from customize in a seperate file
    #+BEGIN_SRC emacs-lisp
-     (setq custom-file "~/.emacs.d/emacs-customize.el")
+     (setq custom-file "~/.config/emacs/emacs-customize.el")
      (load custom-file)
    #+END_SRC
 ** ask for y-or-n instead of yes-or-no
@@ -59,7 +59,7 @@
    #+END_SRC
 ** Start with configuration.org file open
    #+BEGIN_SRC emacs-lisp
-     (setq initial-buffer-choice "~/.emacs.d/configuration.org")
+     (setq initial-buffer-choice "~/.config/emacs/configuration.org")
    #+END_SRC
 ** Save all backups in one place
    #+BEGIN_SRC emacs-lisp
@@ -203,7 +203,6 @@
 
 
 ** Set theme
-   Use =moe-dark= theme
    #+BEGIN_SRC emacs-lisp
      (load-theme 'spacemacs-dark t)
    #+END_SRC

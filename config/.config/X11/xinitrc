@@ -1,7 +1,7 @@
 #!/bin/sh
 
-userresources=$HOME/.Xresources
-usermodmap=$HOME/.Xmodmap
+userresources=$HOME/.config/X11/xresources
+usermodmap=$HOME/.config/X11/xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
@@ -38,5 +38,5 @@ fi
 
 # picom -b # Doesn't work with G-sync
 numlockx &
-~/.fehbg &
-exec /usr/bin/i3
+~/bin/fehbg &
+exec /usr/bin/i3 -V -d all >~/.config/X11/logfile

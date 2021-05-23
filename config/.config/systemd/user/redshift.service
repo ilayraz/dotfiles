@@ -1,12 +1,11 @@
 [Unit]
 Description=Redshift display colour temperature adjustment
 Documentation=http://jonls.dk/redshift
-after=graphical.target
+After=graphical.target
 
 [Service]
 ExecStart=/usr/bin/redshift
 Restart=always
-Environment=DISPLAY=:0
 
 [Install]
 WantedBy=default.target

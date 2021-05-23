@@ -1,3 +1,7 @@
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_CACHE_HOME="${HOME}/.cache"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -53,19 +57,19 @@ if [[ "${commands[fasd]}" -nt "$fasd_cache_file" || ! -s "$fasd_cache_file" ]]; 
 fi
 source "$fasd_cache_file"
 
-zinit ice depth'1' atload'!compile_or_recompile recsource ~/.p10k.zsh; source ~/.p10k.zsh'
+zinit ice depth'1' atload'!compile_or_recompile recsource "${XDG_DATA_HOME}/p10k/p10k.zsh"; source "${XDG_DATA_HOME}/p10k/p10k.zsh"'
 zinit light romkatv/powerlevel10k
 
-# zinit ice lucid atclone"dircolors -b LS_COLORS > clrs.zsh" \
-#     atpull'%atclone' pick"clrs.zsh" nocompile'!' \
-#     atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
-# zinit light trapd00r/LS_COLORS
+zinit ice lucid atclone"dircolors -b LS_COLORS > clrs.zsh" \
+    atpull'%atclone' pick"clrs.zsh" nocompile'!' \
+    atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
+zinit light trapd00r/LS_COLORS
 
 zinit ice lucid depth'1' light-mode trigger-load'!man'
 zinit snippet OMZP::colored-man-pages
 
-zinit ice lucid trigger-load'!conda'
-zinit snippet "${ZHOME}/my_plugins/conda.zsh"
+# zinit ice lucid trigger-load'!conda'
+# zinit snippet "${ZHOME}/my_plugins/conda.zsh"
 
 # fzf config
 zinit ice lucid wait if'[[ -f "/usr/share/fzf/key-bindings.zsh" ]]'

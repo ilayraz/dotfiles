@@ -1,0 +1,12 @@
+[Unit]
+Description=Pulseeffects background
+After=graphical.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/pulseeffects --gapplication-service --load-preset default
+ExecStop=/usr/bin/pulseeffects --quit
+Restart=always
+
+[Install]
+WantedBy=default.target

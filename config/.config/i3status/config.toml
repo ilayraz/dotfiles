@@ -12,10 +12,9 @@ block = "pacman"
 
 [[block]]
 block = "net"
-device = "enp4s0"
-ip = false
-speed_up = true
-speed_down = true
+device = "enp3s0"
+format = "{speed_up;K} {speed_down;K}"
+format_alt = "{graph_up}{speed_up;K} {graph_down}{speed_down;K}"
 interval = 5
 
 [[block]]
